@@ -1,0 +1,47 @@
+{
+  "nomeCompleto": "Priscila Oliveira",
+  "crp": "0584054",
+  "telefoneWhatsApp": "973706270",
+  "emailProfissional": "priolivepsi@gmail.com",
+  "heroHeadline": "",
+  "heroSubheadline": "",
+  "sobreMim": {
+    "titulo": "",
+    "texto": "",
+    "formacao": "",
+    "abordagem": "",
+    "youtubeVideoId": ""
+  },
+  "servicos": {
+    "area1": "",
+    "frase1": "",
+    "area2": "",
+    "frase2": "",
+    "area3": "",
+    "frase3": "",
+    "area4": "",
+    "frase4": "",
+    "abordagemNome": "",
+    "abordagemDescricao": ""
+  },
+  "investimento": {
+    "titulo": "",
+    "descricao": "",
+    "valorSessao": "",
+    "duracaoSessao": "50 minutos ",
+    "modalidades": "Online e Presencial ",
+    "politicaFaltas": "",
+    "reembolsoConvenio": ""
+  },
+  "abordagemClinica": {
+    "titulo": "",
+    "texto": ""
+  },
+  "faq": [],
+  "depoimentos": [],
+  "blogPosts": [],
+  "endereco": "",
+  "instagram": "https://www.instagram.com/priolivepsi/?hl=pt-br",
+  "linkedin": "",
+  "politicaPrivacidade": "/politica-de-privacidade"
+}
