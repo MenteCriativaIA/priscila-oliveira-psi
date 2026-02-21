@@ -4,8 +4,16 @@ import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import siteContent from "@/data/site-content.json";
 
+interface Depoimento {
+    texto: string;
+    autor: string;
+    contexto: string;
+}
+
 export function Depoimentos() {
-    const depoimentos = siteContent.depoimentos;
+    const depoimentos = siteContent.depoimentos as Depoimento[];
+
+    if (depoimentos.length === 0) return null;
 
     return (
         <section id="depoimentos" className="bg-bege py-24 md:py-32">

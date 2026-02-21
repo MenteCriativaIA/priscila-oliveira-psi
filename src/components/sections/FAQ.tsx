@@ -9,8 +9,15 @@ import {
 } from "@/components/ui/accordion";
 import siteContent from "@/data/site-content.json";
 
+interface FaqItem {
+    pergunta: string;
+    resposta: string;
+}
+
 export function FAQ() {
-    const faqItems = siteContent.faq;
+    const faqItems = siteContent.faq as FaqItem[];
+
+    if (faqItems.length === 0) return null;
 
     return (
         <section id="faq" className="bg-bege-light py-24 md:py-32">

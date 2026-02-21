@@ -4,8 +4,17 @@ import { motion } from "framer-motion";
 import { Calendar, ArrowRight } from "lucide-react";
 import siteContent from "@/data/site-content.json";
 
+interface BlogPost {
+    titulo: string;
+    resumo: string;
+    categoria: string;
+    data: string;
+}
+
 export function BlogPreview() {
-    const posts = siteContent.blogPosts;
+    const posts = siteContent.blogPosts as BlogPost[];
+
+    if (posts.length === 0) return null;
 
     return (
         <section id="blog" className="bg-bege-light py-24 md:py-32">
