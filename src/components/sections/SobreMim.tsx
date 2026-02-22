@@ -1,65 +1,49 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { motion } from "framer-motion";
 import siteContent from "@/data/site-content.json";
 
 export function SobreMim() {
     const sectionRef = useRef<HTMLDivElement>(null);
-    const [loadVideo, setLoadVideo] = useState(false);
-    const isInView = useInView(sectionRef, { amount: 0.2, once: true });
 
     const data = siteContent.sobreMim;
     const nome = siteContent.nomeCompleto || "[Nome da Psicóloga]";
     const crp = siteContent.crp || "[CRP XXXXX/XX]";
-    const videoId = data.youtubeVideoId || "eJEWocsBrbo";
-
-    useEffect(() => {
-        if (isInView) {
-            // Small delay to ensure hero animation has settled
-            const timer = setTimeout(() => setLoadVideo(true), 500);
-            return () => clearTimeout(timer);
-        }
-    }, [isInView]);
 
     return (
         <section
             ref={sectionRef}
             id="sobre"
-            className="relative min-h-screen overflow-hidden"
+            className="relative h-screen overflow-hidden"
         >
-            {/* YouTube Video Background */}
-            <div className="absolute inset-0 z-0">
-                {loadVideo ? (
-                    <iframe
-                        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&controls=0&modestbranding=1&playlist=${videoId}&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&fs=0`}
-                        title="Background video"
-                        allow="autoplay; encrypted-media"
-                        allowFullScreen={false}
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-                        style={{
-                            width: "177.78vh",
-                            height: "100vh",
-                            minWidth: "100%",
-                            minHeight: "100%",
-                        }}
-                    />
-                ) : (
-                    <div className="absolute inset-0 bg-petroleo" />
-                )}
-            </div>
+            {/* Video Background */}
+            <video
+                className="absolute inset-0 h-full w-full object-cover object-center"
+                style={{ zIndex: -1 }}
+                src="/video-sobre-mim.mp4"
+                poster="/capa-video.png"
+                muted
+                autoPlay
+                loop
+                playsInline
+            />
 
-            {/* Overlay - Blindagem */}
+            {/* Overlay - Radial Gradient */}
             <div
-                className="absolute inset-0 z-10 pointer-events-none"
+                className="absolute inset-0 pointer-events-none"
                 style={{
+                    zIndex: 0,
                     background:
-                        "linear-gradient(135deg, rgba(27,79,92,0.7) 0%, rgba(27,79,92,0.5) 50%, rgba(27,79,92,0.65) 100%)",
+                        "radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 80%)",
                 }}
             />
 
             {/* Content */}
-            <div className="relative z-20 flex min-h-screen items-center">
+            <div
+                className="relative flex h-full items-center"
+                style={{ zIndex: 1 }}
+            >
                 <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
                     <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16 items-center">
                         {/* Left - Title & CRP */}
