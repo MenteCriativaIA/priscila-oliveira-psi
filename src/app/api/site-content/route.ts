@@ -8,7 +8,7 @@ const DATA_PATH = path.join(process.cwd(), "src", "data", "site-content.json");
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_OWNER = process.env.GITHUB_OWNER || "MenteCriativaIA";
 const GITHUB_REPO = process.env.GITHUB_REPO || "priscila-oliveira-psi";
-const GITHUB_BRANCH = process.env.GITHUB_BRANCH || "main";
+const GITHUB_BRANCH = process.env.GITHUB_BRANCH || "master";
 const GITHUB_FILE_PATH = "src/data/site-content.json";
 
 async function getGitHubContent() {
