@@ -79,6 +79,7 @@ export default function AdminConfiguracaoPage() {
     const [fieldValues, setFieldValues] = useState<Record<string, string>>({});
     const [committedValues, setCommittedValues] = useState<Record<string, string>>({});
     const [dirtyFields, setDirtyFields] = useState<Record<string, boolean>>({});
+    const [editingFields, setEditingFields] = useState<Set<string>>(new Set());
     const [copied, setCopied] = useState(false);
     const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
 
@@ -93,12 +94,8 @@ export default function AdminConfiguracaoPage() {
                 values[f.key] = getNestedValue(data, f.key);
             });
             setFieldValues(values);
-
-            // Restore re-editing state from localStorage
-            const editingKeys: string[] = JSON.parse(localStorage.getItem("editingFields") || "[]");
-            const committed = { ...values };
-            editingKeys.forEach((k) => { committed[k] = ""; });
-            setCommittedValues(committed);
+            setCommittedValues({ ...values });
+            setEditingFields(new Set());
 
             // Expand all categories by default
             const cats: Record<string, boolean> = {};
@@ -134,11 +131,9 @@ export default function AdminConfiguracaoPage() {
 
             if (!res.ok) throw new Error("Save failed");
 
-            // Remove from editing list in localStorage
-            const editingKeys: string[] = JSON.parse(localStorage.getItem("editingFields") || "[]");
-            localStorage.setItem("editingFields", JSON.stringify(editingKeys.filter((k) => k !== field)));
             setCommittedValues((prev) => ({ ...prev, [field]: fieldValues[field] }));
             setDirtyFields((prev) => ({ ...prev, [field]: false }));
+            setEditingFields((prev) => { const next = new Set(prev); next.delete(field); return next; });
             setSavedField(field);
             setTimeout(() => setSavedField(null), 2000);
         } catch {
@@ -149,7 +144,7 @@ export default function AdminConfiguracaoPage() {
         }
     };
 
-    const pendingFields = FIELDS.filter((f) => !committedValues[f.key]?.trim());
+    const pendingFields = FIELDS.filter((f) => !committedValues[f.key]?.trim() || editingFields.has(f.key));
 
     const handleCopyPending = () => {
         const text = pendingFields
@@ -223,7 +218,7 @@ export default function AdminConfiguracaoPage() {
                         </div>
                         {categories.map((cat) => {
                             const catFields = FIELDS.filter((f) => f.category === cat);
-                            const pendingCatFields = catFields.filter((f) => !committedValues[f.key]?.trim());
+                            const pendingCatFields = catFields.filter((f) => !committedValues[f.key]?.trim() || editingFields.has(f.key));
                             const isExpanded = expandedCategories[cat] ?? true;
 
                             // Hide the entire category if all fields are filled
@@ -325,7 +320,7 @@ export default function AdminConfiguracaoPage() {
                         })}
 
                         {/* Saved Items List (Moved to bottom) */}
-                        {FIELDS.filter(f => committedValues[f.key]?.trim()).length > 0 && (
+                        {FIELDS.filter(f => committedValues[f.key]?.trim() && !editingFields.has(f.key)).length > 0 && (
                             <div className="rounded-2xl bg-white/40 backdrop-blur-sm border border-bege-dark/20 shadow-sm p-6 sm:p-8 transition-all duration-300">
                                 <div className="flex items-center gap-3 mb-6">
                                     <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center shrink-0">
@@ -337,15 +332,11 @@ export default function AdminConfiguracaoPage() {
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
-                                    {FIELDS.filter(f => committedValues[f.key]?.trim()).map((f) => (
+                                    {FIELDS.filter(f => committedValues[f.key]?.trim() && !editingFields.has(f.key)).map((f) => (
                                         <button
                                             key={f.key}
                                             onClick={() => {
-                                                // Persist to localStorage so it survives refresh
-                                                const editingKeys: string[] = JSON.parse(localStorage.getItem("editingFields") || "[]");
-                                                if (!editingKeys.includes(f.key)) editingKeys.push(f.key);
-                                                localStorage.setItem("editingFields", JSON.stringify(editingKeys));
-                                                setCommittedValues((prev) => ({ ...prev, [f.key]: "" }));
+                                                setEditingFields((prev) => new Set(prev).add(f.key));
                                                 setExpandedCategories((prev) => ({ ...prev, [f.category]: true }));
                                             }}
                                             className="flex items-center gap-2 text-sm text-petroleo/70 bg-green-50/50 px-4 py-2 rounded-lg border border-green-100 hover:bg-dourado/10 hover:border-dourado/30 hover:text-petroleo transition-all duration-200 cursor-pointer text-left group"

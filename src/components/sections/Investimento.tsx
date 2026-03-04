@@ -24,9 +24,11 @@ export function Investimento() {
                         {inv.titulo || "Investimento em sua Saúde"}
                     </h2>
                     <div className="mt-4 mx-auto h-1 w-20 rounded-full bg-dourado" />
-                    <p className="mt-6 text-petroleo/70 text-lg max-w-2xl mx-auto">
-                        {inv.descricao || "[Descrição sobre o investimento]"}
-                    </p>
+                    {inv.descricao && (
+                        <p className="mt-6 text-petroleo/70 text-lg max-w-2xl mx-auto">
+                            {inv.descricao}
+                        </p>
+                    )}
                 </motion.div>
 
                 {/* Investment Card */}

@@ -21,7 +21,6 @@ const cardVariants = {
 
 export function Servicos() {
     const s = siteContent.servicos;
-    const abordagem = siteContent.abordagemClinica;
 
     // Build cards from the new object structure
     const cards = [
@@ -94,11 +93,11 @@ export function Servicos() {
                     className="mt-20 rounded-3xl bg-petroleo/5 border border-petroleo/10 p-8 md:p-12"
                 >
                     <h3 className="font-serif text-2xl font-bold text-petroleo sm:text-3xl">
-                        {abordagem.titulo || "Minha Abordagem"}
+                        {s.abordagemNome || "Minha Abordagem"}
                     </h3>
                     <div className="mt-3 h-1 w-16 rounded-full bg-dourado" />
-                    <p className="mt-6 text-lg text-petroleo/80 leading-relaxed max-w-3xl">
-                        {abordagem.texto || "[Explicação da abordagem clínica]"}
+                    <p className="mt-6 text-lg text-petroleo/80 leading-relaxed max-w-3xl whitespace-pre-line">
+                        {s.abordagemDescricao || "[Explicação da abordagem clínica]"}
                     </p>
                 </motion.div>
             </div>
