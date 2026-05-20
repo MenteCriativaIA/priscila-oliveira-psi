@@ -44,7 +44,12 @@ export function Footer() {
                             {endereco && (
                                 <div className="flex items-start gap-2 text-bege/70 text-sm">
                                     <MapPin className="h-4 w-4 text-dourado/60 mt-0.5 shrink-0" />
-                                    <span>{endereco}</span>
+                                    <span>{endereco.split('\n').map((line, i) => (
+                                        <span key={i}>
+                                            {line}
+                                            {i < endereco.split('\n').length - 1 && <br />}
+                                        </span>
+                                    ))}</span>
                                 </div>
                             )}
                         </div>
