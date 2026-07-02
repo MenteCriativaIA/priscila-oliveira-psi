@@ -337,8 +337,20 @@ export default function AdminConfiguracaoPage() {
                                     {FIELDS.filter(f => committedValues[f.key]?.trim() && !editingFields.has(f.key)).map((f) => (
                                         <button
                                             key={f.key}
-                                            onClick={() => {
-                                                setEditingFields((prev) => new Set(prev).add(f.key));
+                                            onClick={async () => {
+                                                // Immediately clear from server so F5 shows empty
+                                                try {
+                                                    await fetch("/api/site-content", {
+                                                        method: "PATCH",
+                                                        headers: { "Content-Type": "application/json" },
+                                                        body: JSON.stringify({ field: f.key, value: "" }),
+                                                    });
+                                                } catch { /* ignore */ }
+                                                // Clear locally
+                                                setFieldValues((prev) => ({ ...prev, [f.key]: "" }));
+                                                setCommittedValues((prev) => ({ ...prev, [f.key]: "" }));
+                                                setDirtyFields((prev) => ({ ...prev, [f.key]: false }));
+                                                setEditingFields((prev) => { const next = new Set(prev); next.delete(f.key); return next; });
                                                 setExpandedCategories((prev) => ({ ...prev, [f.category]: true }));
                                             }}
                                             className="flex items-center gap-2 text-sm text-petroleo/70 bg-green-50/50 px-4 py-2 rounded-lg border border-green-100 hover:bg-dourado/10 hover:border-dourado/30 hover:text-petroleo transition-all duration-200 cursor-pointer text-left group"
