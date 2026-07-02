@@ -85,7 +85,9 @@ export default function AdminConfiguracaoPage() {
 
     const fetchContent = useCallback(async () => {
         try {
-            const res = await fetch("/api/site-content");
+            const res = await fetch(`/api/site-content?t=${Date.now()}`, {
+                cache: "no-store",
+            });
             const data = await res.json();
             setContent(data);
 
