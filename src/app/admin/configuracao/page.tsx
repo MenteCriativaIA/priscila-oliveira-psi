@@ -9,19 +9,26 @@ import {
     ClipboardCheck,
     ChevronDown,
     ChevronUp,
+    Palette,
+    FileText,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+/* ──────────────────────────────────────────────
+   Field Configuration Types & Data
+   ────────────────────────────────────────────── */
 
 interface FieldConfig {
     key: string;
     label: string;
-    type: "text" | "textarea" | "email" | "tel";
+    type: "text" | "textarea" | "email" | "tel" | "color" | "select";
     placeholder: string;
     category: string;
+    options?: { value: string; label: string }[];
 }
 
-const FIELDS: FieldConfig[] = [
-    // Dados Pessoais
+// ── Tab: Conteúdo do Site ──
+const CONTENT_FIELDS: FieldConfig[] = [
     { key: "nomeCompleto", label: "Nome Completo", type: "text", placeholder: "Ex: Dra. Priscila Oliveira", category: "Dados Pessoais" },
     { key: "crp", label: "CRP", type: "text", placeholder: "Ex: CRP 06/123456", category: "Dados Pessoais" },
     { key: "telefoneWhatsApp", label: "Telefone / WhatsApp", type: "tel", placeholder: "Ex: 5511999999999", category: "Dados Pessoais" },
@@ -29,7 +36,6 @@ const FIELDS: FieldConfig[] = [
     { key: "instagram", label: "Instagram (URL)", type: "text", placeholder: "Ex: https://instagram.com/psi.priscila", category: "Dados Pessoais" },
     { key: "linkedin", label: "LinkedIn (URL)", type: "text", placeholder: "Ex: https://linkedin.com/in/priscila-oliveira", category: "Dados Pessoais" },
 
-    // Especialidades (Seção de Serviços)
     { key: "servicos.area1", label: "Área de Atuação 1", type: "text", placeholder: "Ex: Ansiedade", category: "Especialidades" },
     { key: "servicos.frase1", label: "Frase de Ajuda 1", type: "text", placeholder: "Explique como você ajuda nesta área...", category: "Especialidades" },
     { key: "servicos.area2", label: "Área de Atuação 2", type: "text", placeholder: "Ex: Burnout", category: "Especialidades" },
@@ -41,7 +47,6 @@ const FIELDS: FieldConfig[] = [
     { key: "servicos.abordagemNome", label: "Nome da sua Abordagem Clínica", type: "text", placeholder: "Ex: Terapia Cognitivo-Comportamental", category: "Especialidades" },
     { key: "servicos.abordagemDescricao", label: "Explicação da Abordagem (leigo)", type: "textarea", placeholder: "Explique em 3 parágrafos simples como funciona sua abordagem...", category: "Especialidades" },
 
-    // Informações Práticas (Seção de Investimento e FAQ)
     { key: "investimento.duracaoSessao", label: "Duração Média da Sessão", type: "text", placeholder: "Ex: 50 minutos", category: "Informações Práticas" },
     { key: "investimento.modalidades", label: "Modalidades de Atendimento", type: "text", placeholder: "Ex: Online, Presencial ou Ambos", category: "Informações Práticas" },
     { key: "endereco", label: "Endereço Completo do Consultório", type: "text", placeholder: "Caso atenda presencialmente...", category: "Informações Práticas" },
@@ -49,16 +54,77 @@ const FIELDS: FieldConfig[] = [
     { key: "investimento.reembolsoConvenio", label: "Emite recibo para reembolso de convênio?", type: "text", placeholder: "Ex: Sim, emito recibo para solicitação de reembolso.", category: "Informações Práticas" },
     { key: "investimento.valorSessao", label: "Valor ou Faixa de Investimento", type: "text", placeholder: "Ex: R$ 250,00 ou sob consulta", category: "Informações Práticas" },
 
-    // Hero (Configurações Adicionais)
     { key: "heroHeadline", label: "Hero - Título Principal", type: "text", placeholder: "Psicóloga especializada em...", category: "Configurações do Site" },
     { key: "heroSubheadline", label: "Hero - Subtítulo", type: "text", placeholder: "Construir junto com você...", category: "Configurações do Site" },
-    // Sobre Mim
+
     { key: "sobreMim.titulo", label: "Sobre Mim - Título", type: "text", placeholder: "Sobre Mim", category: "Sobre Mim" },
     { key: "sobreMim.texto", label: "Sobre Mim - Texto Bio", type: "textarea", placeholder: "Conte sua história profissional...", category: "Sobre Mim" },
     { key: "sobreMim.formacao", label: "Formação Acadêmica", type: "text", placeholder: "Ex: Graduação em Psicologia | Especialização em...", category: "Sobre Mim" },
     { key: "sobreMim.abordagem", label: "Abordagem Clínica (Resumo)", type: "text", placeholder: "Ex: Terapia Cognitivo-Comportamental (TCC)", category: "Sobre Mim" },
     { key: "sobreMim.youtubeVideoId", label: "YouTube Video ID (Background)", type: "text", placeholder: "Ex: eJEWocsBrbo", category: "Sobre Mim" },
 ];
+
+// ── Tab: Visual do Site ──
+const DESIGN_FIELDS: FieldConfig[] = [
+    {
+        key: "designSystem.corPrincipal", label: "Cor Principal do Site", type: "color",
+        placeholder: "#1B4F5C", category: "🎨 Cores do Site",
+    },
+    {
+        key: "designSystem.corDestaque", label: "Cor de Destaque (botões e links)", type: "color",
+        placeholder: "#C89B5E", category: "🎨 Cores do Site",
+    },
+    {
+        key: "designSystem.corFundo", label: "Cor de Fundo", type: "color",
+        placeholder: "#EDE7DC", category: "🎨 Cores do Site",
+    },
+    {
+        key: "designSystem.fonteTitulos", label: "Estilo das Letras dos Títulos", type: "select",
+        placeholder: "Escolha um estilo...", category: "✍️ Estilo dos Textos",
+        options: [
+            { value: "Lora", label: "Lora — Elegante e clássico" },
+            { value: "Playfair Display", label: "Playfair Display — Sofisticado" },
+            { value: "Merriweather", label: "Merriweather — Tradicional" },
+            { value: "Cormorant Garamond", label: "Cormorant Garamond — Refinado" },
+            { value: "EB Garamond", label: "EB Garamond — Atemporal" },
+        ],
+    },
+    {
+        key: "designSystem.fonteCorpo", label: "Estilo das Letras do Corpo", type: "select",
+        placeholder: "Escolha um estilo...", category: "✍️ Estilo dos Textos",
+        options: [
+            { value: "Inter", label: "Inter — Moderno e limpo" },
+            { value: "Roboto", label: "Roboto — Profissional" },
+            { value: "Open Sans", label: "Open Sans — Amigável" },
+            { value: "Poppins", label: "Poppins — Jovem e arredondado" },
+            { value: "Nunito", label: "Nunito — Suave e acolhedor" },
+        ],
+    },
+    {
+        key: "designSystem.formatoCantos", label: "Formato dos Cantos (cards e botões)", type: "select",
+        placeholder: "Escolha um formato...", category: "📐 Formato e Estilo",
+        options: [
+            { value: "reto", label: "Reto — Cantos quadrados" },
+            { value: "suave", label: "Suave — Levemente arredondados" },
+            { value: "arredondado", label: "Arredondado — Bem curvos" },
+        ],
+    },
+    {
+        key: "designSystem.estiloBotoes", label: "Estilo dos Botões", type: "select",
+        placeholder: "Escolha um estilo...", category: "📐 Formato e Estilo",
+        options: [
+            { value: "solido", label: "Sólido — Preenchido com cor" },
+            { value: "contorno", label: "Contorno — Só a borda colorida" },
+            { value: "arredondado", label: "Arredondado — Formato pílula" },
+        ],
+    },
+];
+
+const ALL_FIELDS = [...CONTENT_FIELDS, ...DESIGN_FIELDS];
+
+/* ──────────────────────────────────────────────
+   Utility
+   ────────────────────────────────────────────── */
 
 function getNestedValue(obj: Record<string, unknown>, path: string): string {
     const keys = path.split(".");
@@ -70,7 +136,14 @@ function getNestedValue(obj: Record<string, unknown>, path: string): string {
     return (current as string) || "";
 }
 
+/* ──────────────────────────────────────────────
+   Component
+   ────────────────────────────────────────────── */
+
+type TabKey = "conteudo" | "visual";
+
 export default function AdminConfiguracaoPage() {
+    const [activeTab, setActiveTab] = useState<TabKey>("conteudo");
     const [content, setContent] = useState<Record<string, unknown> | null>(null);
     const [loading, setLoading] = useState(true);
     const [savingField, setSavingField] = useState<string | null>(null);
@@ -83,6 +156,9 @@ export default function AdminConfiguracaoPage() {
     const [copied, setCopied] = useState(false);
     const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
 
+    // Which fields belong to the active tab
+    const activeFields = activeTab === "conteudo" ? CONTENT_FIELDS : DESIGN_FIELDS;
+
     const fetchContent = useCallback(async () => {
         try {
             const res = await fetch(`/api/site-content?t=${Date.now()}`, {
@@ -92,16 +168,15 @@ export default function AdminConfiguracaoPage() {
             setContent(data);
 
             const values: Record<string, string> = {};
-            FIELDS.forEach((f) => {
+            ALL_FIELDS.forEach((f) => {
                 values[f.key] = getNestedValue(data, f.key);
             });
             setFieldValues(values);
             setCommittedValues({ ...values });
             setEditingFields(new Set());
 
-            // Expand all categories by default
             const cats: Record<string, boolean> = {};
-            FIELDS.forEach((f) => { cats[f.category] = true; });
+            ALL_FIELDS.forEach((f) => { cats[f.category] = true; });
             setExpandedCategories(cats);
         } catch {
             console.error("Failed to fetch content");
@@ -146,13 +221,20 @@ export default function AdminConfiguracaoPage() {
         }
     };
 
-    const pendingFields = FIELDS.filter((f) => !committedValues[f.key]?.trim() || editingFields.has(f.key));
+    // Stats per tab
+    const filledCount = activeFields.filter(f => committedValues[f.key]?.trim()).length;
+    const totalCount = activeFields.length;
+    const percentage = totalCount > 0 ? Math.round((filledCount / totalCount) * 100) : 0;
+
+    const pendingFields = activeFields.filter((f) => !committedValues[f.key]?.trim() || editingFields.has(f.key));
+    const savedFields = activeFields.filter(f => committedValues[f.key]?.trim() && !editingFields.has(f.key));
 
     const handleCopyPending = () => {
         const text = pendingFields
             .map((f) => `• ${f.label}`)
             .join("\n");
-        const msg = `Olá! Seguem os dados que ainda preciso preencher no site:\n\n${text}`;
+        const tabName = activeTab === "conteudo" ? "Conteúdo" : "Visual";
+        const msg = `Olá! Seguem os dados de ${tabName} que ainda preciso preencher no site:\n\n${text}`;
         navigator.clipboard.writeText(msg);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
@@ -162,7 +244,24 @@ export default function AdminConfiguracaoPage() {
         setExpandedCategories((prev) => ({ ...prev, [cat]: !prev[cat] }));
     };
 
-    const categories = [...new Set(FIELDS.map((f) => f.category))];
+    const handleEditSavedItem = async (f: FieldConfig) => {
+        // Immediately clear from server so F5 shows empty
+        try {
+            await fetch("/api/site-content", {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ field: f.key, value: "" }),
+            });
+        } catch { /* ignore */ }
+        // Clear locally
+        setFieldValues((prev) => ({ ...prev, [f.key]: "" }));
+        setCommittedValues((prev) => ({ ...prev, [f.key]: "" }));
+        setDirtyFields((prev) => ({ ...prev, [f.key]: false }));
+        setEditingFields((prev) => { const next = new Set(prev); next.delete(f.key); return next; });
+        setExpandedCategories((prev) => ({ ...prev, [f.category]: true }));
+    };
+
+    const categories = [...new Set(activeFields.map((f) => f.category))];
 
     if (loading) {
         return (
@@ -171,6 +270,77 @@ export default function AdminConfiguracaoPage() {
             </div>
         );
     }
+
+    /* ──────────────────────────────────────────────
+       Render field input based on type
+       ────────────────────────────────────────────── */
+    const renderFieldInput = (field: FieldConfig) => {
+        const value = fieldValues[field.key] || "";
+
+        if (field.type === "color") {
+            return (
+                <div className="flex items-center gap-3 flex-1 min-w-0">
+                    <input
+                        type="color"
+                        value={value || field.placeholder}
+                        onChange={(e) => handleFieldChange(field.key, e.target.value)}
+                        className="h-11 w-14 rounded-lg border border-bege-dark/30 cursor-pointer bg-white p-1 transition-all duration-200 hover:border-dourado focus:border-dourado focus:ring-2 focus:ring-dourado/20"
+                    />
+                    <input
+                        type="text"
+                        value={value}
+                        onChange={(e) => handleFieldChange(field.key, e.target.value)}
+                        placeholder={field.placeholder}
+                        className="flex-1 min-w-0 rounded-xl border border-bege-dark/30 bg-white px-4 py-3 text-sm text-petroleo placeholder:text-petroleo/30 focus:border-dourado focus:outline-none focus:ring-2 focus:ring-dourado/20 transition-all duration-200 font-mono"
+                    />
+                </div>
+            );
+        }
+
+        if (field.type === "select" && field.options) {
+            return (
+                <select
+                    value={value}
+                    onChange={(e) => handleFieldChange(field.key, e.target.value)}
+                    className="flex-1 min-w-0 rounded-xl border border-bege-dark/30 bg-white px-4 py-3 text-sm text-petroleo focus:border-dourado focus:outline-none focus:ring-2 focus:ring-dourado/20 transition-all duration-200 cursor-pointer appearance-none"
+                    style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%231B4F5C' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E")`,
+                        backgroundPosition: "right 0.75rem center",
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "1.25rem",
+                        paddingRight: "2.5rem",
+                    }}
+                >
+                    <option value="">{field.placeholder}</option>
+                    {field.options.map((opt) => (
+                        <option key={opt.value} value={opt.value}>{opt.label}</option>
+                    ))}
+                </select>
+            );
+        }
+
+        if (field.type === "textarea") {
+            return (
+                <textarea
+                    rows={4}
+                    value={value}
+                    onChange={(e) => handleFieldChange(field.key, e.target.value)}
+                    placeholder={field.placeholder}
+                    className="flex-1 min-w-0 rounded-xl border border-bege-dark/30 bg-white px-4 py-3 text-sm text-petroleo placeholder:text-petroleo/30 focus:border-dourado focus:outline-none focus:ring-2 focus:ring-dourado/20 transition-all duration-200 resize-none"
+                />
+            );
+        }
+
+        return (
+            <input
+                type={field.type}
+                value={value}
+                onChange={(e) => handleFieldChange(field.key, e.target.value)}
+                placeholder={field.placeholder}
+                className="flex-1 min-w-0 rounded-xl border border-bege-dark/30 bg-white px-4 py-3 text-sm text-petroleo placeholder:text-petroleo/30 focus:border-dourado focus:outline-none focus:ring-2 focus:ring-dourado/20 transition-all duration-200"
+            />
+        );
+    };
 
     return (
         <div className="min-h-screen bg-bege">
@@ -186,44 +356,83 @@ export default function AdminConfiguracaoPage() {
                 </div>
             </div>
 
-            <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10">
+            {/* Tabs */}
+            <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-6">
+                <div className="flex gap-2">
+                    <button
+                        onClick={() => setActiveTab("conteudo")}
+                        className={`flex items-center gap-2 px-6 py-3 rounded-t-2xl text-sm font-semibold transition-all duration-200 ${
+                            activeTab === "conteudo"
+                                ? "bg-white/80 text-petroleo border border-b-0 border-bege-dark/20 shadow-sm"
+                                : "bg-bege-dark/30 text-petroleo/50 hover:bg-bege-dark/50 hover:text-petroleo/70"
+                        }`}
+                    >
+                        <FileText className="h-4 w-4" />
+                        Conteúdo do Site
+                    </button>
+                    <button
+                        onClick={() => setActiveTab("visual")}
+                        className={`flex items-center gap-2 px-6 py-3 rounded-t-2xl text-sm font-semibold transition-all duration-200 ${
+                            activeTab === "visual"
+                                ? "bg-white/80 text-petroleo border border-b-0 border-bege-dark/20 shadow-sm"
+                                : "bg-bege-dark/30 text-petroleo/50 hover:bg-bege-dark/50 hover:text-petroleo/70"
+                        }`}
+                    >
+                        <Palette className="h-4 w-4" />
+                        Visual do Site
+                    </button>
+                </div>
+            </div>
+
+            <div className="mx-auto max-w-6xl px-4 sm:px-6 pb-10">
                 <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
-                    {/* Form Area and Summary */}
+                    {/* Form Area */}
                     <div className="lg:col-span-2 space-y-8">
-                        {/* Top Summary & Info Card */}
-                        <div className="rounded-3xl bg-petroleo text-bege-light shadow-2xl p-6 sm:p-8 border border-white/10 relative overflow-hidden">
+                        {/* Summary Card */}
+                        <div className="rounded-b-3xl rounded-tr-3xl bg-petroleo text-bege-light shadow-2xl p-6 sm:p-8 border border-white/10 relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-dourado/10 blur-3xl rounded-full -mr-16 -mt-16" />
 
                             <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                                 <div className="space-y-2">
-                                    <h3 className="font-serif text-2xl font-bold">Bem-vinda ao seu Painel!</h3>
+                                    <h3 className="font-serif text-2xl font-bold">
+                                        {activeTab === "conteudo" ? "Conteúdo do Site" : "Visual do Site"}
+                                    </h3>
                                     <p className="text-bege/70 text-lg sm:text-xl max-w-2xl">
-                                        Aqui você configura o conteúdo do seu site.
-                                        <span className="block mt-3 font-medium text-dourado-light italic">
-                                            Dica: Ao final da página você encontra os itens já salvos e um <span className="inline-flex items-center bg-white/10 border border-white/20 px-2 py-0.5 rounded-lg not-italic text-white text-sm uppercase tracking-wider font-bold">botão</span> para copiar o que falta!
-                                        </span>
+                                        {activeTab === "conteudo"
+                                            ? <>Preencha os dados profissionais do seu site.
+                                                <span className="block mt-3 font-medium text-dourado-light italic">
+                                                    Dica: Ao final da página você encontra os itens já salvos e um <span className="inline-flex items-center bg-white/10 border border-white/20 px-2 py-0.5 rounded-lg not-italic text-white text-sm uppercase tracking-wider font-bold">botão</span> para copiar o que falta!
+                                                </span>
+                                              </>
+                                            : <>Personalize as cores, fontes e estilo do seu site.
+                                                <span className="block mt-3 font-medium text-dourado-light italic">
+                                                    Clique na cor para abrir a paleta. Escolha a fonte nos menus.
+                                                </span>
+                                              </>
+                                        }
                                     </p>
                                 </div>
                                 <div className="flex flex-col items-center md:items-end bg-white/5 p-4 rounded-2xl border border-white/10 min-w-[140px]">
                                     <span className="text-3xl font-bold text-dourado">
-                                        {Math.round((FIELDS.filter(f => committedValues[f.key]?.trim()).length / FIELDS.length) * 100)}%
+                                        {percentage}%
                                     </span>
                                     <span className="text-[10px] uppercase tracking-widest text-bege/40 mt-1">Concluído</span>
                                     <div className="h-1.5 w-24 bg-white/20 rounded-full mt-3 overflow-hidden">
                                         <div
                                             className="h-full bg-dourado transition-all duration-1000 ease-out"
-                                            style={{ width: `${(FIELDS.filter(f => committedValues[f.key]?.trim()).length / FIELDS.length) * 100}%` }}
+                                            style={{ width: `${percentage}%` }}
                                         />
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        {/* Category Forms */}
                         {categories.map((cat) => {
-                            const catFields = FIELDS.filter((f) => f.category === cat);
+                            const catFields = activeFields.filter((f) => f.category === cat);
                             const pendingCatFields = catFields.filter((f) => !committedValues[f.key]?.trim() || editingFields.has(f.key));
                             const isExpanded = expandedCategories[cat] ?? true;
 
-                            // Hide the entire category if all fields are filled
                             if (pendingCatFields.length === 0) return null;
 
                             return (
@@ -265,23 +474,7 @@ export default function AdminConfiguracaoPage() {
                                                             {field.label}
                                                         </label>
                                                         <div className="flex w-full items-center gap-2">
-                                                            {field.type === "textarea" ? (
-                                                                <textarea
-                                                                    rows={4}
-                                                                    value={fieldValues[field.key] || ""}
-                                                                    onChange={(e) => handleFieldChange(field.key, e.target.value)}
-                                                                    placeholder={field.placeholder}
-                                                                    className="flex-1 min-w-0 rounded-xl border border-bege-dark/30 bg-white px-4 py-3 text-sm text-petroleo placeholder:text-petroleo/30 focus:border-dourado focus:outline-none focus:ring-2 focus:ring-dourado/20 transition-all duration-200 resize-none"
-                                                                />
-                                                            ) : (
-                                                                <input
-                                                                    type={field.type}
-                                                                    value={fieldValues[field.key] || ""}
-                                                                    onChange={(e) => handleFieldChange(field.key, e.target.value)}
-                                                                    placeholder={field.placeholder}
-                                                                    className="flex-1 min-w-0 rounded-xl border border-bege-dark/30 bg-white px-4 py-3 text-sm text-petroleo placeholder:text-petroleo/30 focus:border-dourado focus:outline-none focus:ring-2 focus:ring-dourado/20 transition-all duration-200"
-                                                                />
-                                                            )}
+                                                            {renderFieldInput(field)}
                                                             <div className={`transition-all duration-200 ${showButton ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"}`}>
                                                                 <Button
                                                                     variant={isSaved ? "success" : isError ? "outline" : "default"}
@@ -321,8 +514,8 @@ export default function AdminConfiguracaoPage() {
                             );
                         })}
 
-                        {/* Saved Items List (Moved to bottom) */}
-                        {FIELDS.filter(f => committedValues[f.key]?.trim() && !editingFields.has(f.key)).length > 0 && (
+                        {/* Saved Items */}
+                        {savedFields.length > 0 && (
                             <div className="rounded-2xl bg-white/40 backdrop-blur-sm border border-bege-dark/20 shadow-sm p-6 sm:p-8 transition-all duration-300">
                                 <div className="flex items-center gap-3 mb-6">
                                     <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center shrink-0">
@@ -334,30 +527,25 @@ export default function AdminConfiguracaoPage() {
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
-                                    {FIELDS.filter(f => committedValues[f.key]?.trim() && !editingFields.has(f.key)).map((f) => (
+                                    {savedFields.map((f) => (
                                         <button
                                             key={f.key}
-                                            onClick={async () => {
-                                                // Immediately clear from server so F5 shows empty
-                                                try {
-                                                    await fetch("/api/site-content", {
-                                                        method: "PATCH",
-                                                        headers: { "Content-Type": "application/json" },
-                                                        body: JSON.stringify({ field: f.key, value: "" }),
-                                                    });
-                                                } catch { /* ignore */ }
-                                                // Clear locally
-                                                setFieldValues((prev) => ({ ...prev, [f.key]: "" }));
-                                                setCommittedValues((prev) => ({ ...prev, [f.key]: "" }));
-                                                setDirtyFields((prev) => ({ ...prev, [f.key]: false }));
-                                                setEditingFields((prev) => { const next = new Set(prev); next.delete(f.key); return next; });
-                                                setExpandedCategories((prev) => ({ ...prev, [f.category]: true }));
-                                            }}
+                                            onClick={() => handleEditSavedItem(f)}
                                             className="flex items-center gap-2 text-sm text-petroleo/70 bg-green-50/50 px-4 py-2 rounded-lg border border-green-100 hover:bg-dourado/10 hover:border-dourado/30 hover:text-petroleo transition-all duration-200 cursor-pointer text-left group"
                                         >
-                                            <Check className="h-4 w-4 text-green-600 shrink-0 group-hover:hidden" />
+                                            {f.type === "color" && committedValues[f.key] ? (
+                                                <span
+                                                    className="h-4 w-4 rounded-full border border-petroleo/20 shrink-0 group-hover:hidden"
+                                                    style={{ backgroundColor: committedValues[f.key] }}
+                                                />
+                                            ) : (
+                                                <Check className="h-4 w-4 text-green-600 shrink-0 group-hover:hidden" />
+                                            )}
                                             <AlertCircle className="h-4 w-4 text-dourado shrink-0 hidden group-hover:block" />
                                             <span className="flex-1">{f.label}</span>
+                                            {f.type === "color" && committedValues[f.key] && (
+                                                <span className="text-[10px] font-mono text-petroleo/40 group-hover:hidden">{committedValues[f.key]}</span>
+                                            )}
                                             <span className="text-[10px] text-petroleo/30 group-hover:text-dourado hidden md:block">editar</span>
                                         </button>
                                     ))}
@@ -366,7 +554,7 @@ export default function AdminConfiguracaoPage() {
                         )}
                     </div>
 
-                    {/* Sidebar - Quick Access */}
+                    {/* Sidebar */}
                     <div className="lg:col-span-1 space-y-6">
                         <div className="sticky top-6 space-y-6">
                             {/* Pending Checklist */}
@@ -419,7 +607,7 @@ export default function AdminConfiguracaoPage() {
                                 )}
                             </div>
 
-                            {/* Saved Items Direct Note */}
+                            {/* Note */}
                             <div className="rounded-2xl bg-white/60 border border-dashed border-bege-dark/30 p-5 text-center">
                                 <p className="text-xs font-medium text-petroleo/50 flex flex-col items-center gap-2 italic">
                                     <ChevronDown className="h-4 w-4 text-dourado/50 animate-bounce" />

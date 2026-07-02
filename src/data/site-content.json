@@ -43,5 +43,14 @@
   "endereco": "",
   "instagram": "",
   "linkedin": "",
-  "politicaPrivacidade": "/politica-de-privacidade"
+  "politicaPrivacidade": "/politica-de-privacidade",
+  "designSystem": {
+    "corPrincipal": "",
+    "corDestaque": "",
+    "corFundo": "",
+    "fonteTitulos": "",
+    "fonteCorpo": "",
+    "formatoCantos": "",
+    "estiloBotoes": ""
+  }
 }
