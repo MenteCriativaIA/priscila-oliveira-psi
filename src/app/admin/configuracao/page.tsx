@@ -221,12 +221,12 @@ export default function AdminConfiguracaoPage() {
         }
     };
 
-    // Stats per tab
-    const filledCount = activeFields.filter(f => committedValues[f.key]?.trim()).length;
+    // Stats per tab — uses fieldValues for real-time updates as user fills fields
+    const filledCount = activeFields.filter(f => fieldValues[f.key]?.trim()).length;
     const totalCount = activeFields.length;
     const percentage = totalCount > 0 ? Math.round((filledCount / totalCount) * 100) : 0;
 
-    const pendingFields = activeFields.filter((f) => !committedValues[f.key]?.trim() || editingFields.has(f.key));
+    const pendingFields = activeFields.filter((f) => !fieldValues[f.key]?.trim());
     const savedFields = activeFields.filter(f => committedValues[f.key]?.trim() && !editingFields.has(f.key));
 
     const handleCopyPending = () => {
@@ -430,7 +430,7 @@ export default function AdminConfiguracaoPage() {
                         {/* Category Forms */}
                         {categories.map((cat) => {
                             const catFields = activeFields.filter((f) => f.category === cat);
-                            const pendingCatFields = catFields.filter((f) => !committedValues[f.key]?.trim() || editingFields.has(f.key));
+                            const pendingCatFields = catFields.filter((f) => !fieldValues[f.key]?.trim());
                             const isExpanded = expandedCategories[cat] ?? true;
 
                             if (pendingCatFields.length === 0) return null;
