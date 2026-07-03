@@ -401,7 +401,9 @@ export default function AdminConfiguracaoPage() {
                                         {activeTab === "conteudo"
                                             ? <>Preencha os dados profissionais do seu site.
                                                 <span className="block mt-3 font-medium text-dourado-light italic">
-                                                    Dica: Ao final da página você encontra os itens já salvos e um <span className="inline-flex items-center bg-white/10 border border-white/20 px-2 py-0.5 rounded-lg not-italic text-white text-sm uppercase tracking-wider font-bold">botão</span> para copiar o que falta!
+                                                    Dica: Ao final da página você encontra os itens já salvos. E temos um botão verde aqui do lado direito: &quot;Copiar Pendências&quot;. Clique nele e dê um CRTL+V para sua agenda do Whatsapp ou outra de sua preferência para você anotar e terminar de preencher depois. Fique tranquila(o) que tudo que você preencheu já está salvo.
+                                                    <br /><br />
+                                                    <span className="font-bold">NOTA: Qualquer alteração, leva 2 minutos para ser refletida no site.</span>
                                                 </span>
                                               </>
                                             : <>Personalize as cores, fontes e estilo do seu site.
