@@ -46,7 +46,7 @@
   "politicaPrivacidade": "/politica-de-privacidade",
   "designSystem": {
     "corPrincipal": "#5b3a1a",
-    "corDestaque": "#df8f20",
+    "corDestaque": "",
     "corFundo": "#c1b59f",
     "fonteTitulos": "Lora",
     "fonteCorpo": "Inter",
