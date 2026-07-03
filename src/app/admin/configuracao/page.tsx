@@ -221,12 +221,12 @@ export default function AdminConfiguracaoPage() {
         }
     };
 
-    // Stats per tab — uses fieldValues for real-time updates as user fills fields
-    const filledCount = activeFields.filter(f => fieldValues[f.key]?.trim()).length;
+    // Stats per tab — uses committedValues so it only updates when saved
+    const filledCount = activeFields.filter(f => committedValues[f.key]?.trim()).length;
     const totalCount = activeFields.length;
     const percentage = totalCount > 0 ? Math.round((filledCount / totalCount) * 100) : 0;
 
-    const pendingFields = activeFields.filter((f) => !fieldValues[f.key]?.trim());
+    const pendingFields = activeFields.filter((f) => !committedValues[f.key]?.trim());
     const savedFields = activeFields.filter(f => committedValues[f.key]?.trim() && !editingFields.has(f.key));
 
     const handleCopyPending = () => {
@@ -432,8 +432,8 @@ export default function AdminConfiguracaoPage() {
                             const catFields = activeFields.filter((f) => f.category === cat);
                             // formFields defines what is visible in the form (not yet saved to the server)
                             const formFields = catFields.filter((f) => !committedValues[f.key]?.trim() || editingFields.has(f.key));
-                            // pendingCatFields is just for the "X pendentes" badge (real-time as user types)
-                            const pendingCatFields = catFields.filter((f) => !fieldValues[f.key]?.trim());
+                            // pendingCatFields is just for the "X pendentes" badge (now based on saved state)
+                            const pendingCatFields = catFields.filter((f) => !committedValues[f.key]?.trim());
                             const isExpanded = expandedCategories[cat] ?? true;
 
                             if (formFields.length === 0) return null;
