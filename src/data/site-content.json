@@ -49,7 +49,7 @@
     "corDestaque": "#df8f20",
     "corFundo": "#c1b59f",
     "fonteTitulos": "Lora",
-    "fonteCorpo": "",
+    "fonteCorpo": "Inter",
     "formatoCantos": "",
     "estiloBotoes": ""
   }
