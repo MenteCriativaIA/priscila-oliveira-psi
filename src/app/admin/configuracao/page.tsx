@@ -430,10 +430,13 @@ export default function AdminConfiguracaoPage() {
                         {/* Category Forms */}
                         {categories.map((cat) => {
                             const catFields = activeFields.filter((f) => f.category === cat);
+                            // formFields defines what is visible in the form (not yet saved to the server)
+                            const formFields = catFields.filter((f) => !committedValues[f.key]?.trim() || editingFields.has(f.key));
+                            // pendingCatFields is just for the "X pendentes" badge (real-time as user types)
                             const pendingCatFields = catFields.filter((f) => !fieldValues[f.key]?.trim());
                             const isExpanded = expandedCategories[cat] ?? true;
 
-                            if (pendingCatFields.length === 0) return null;
+                            if (formFields.length === 0) return null;
 
                             return (
                                 <div
@@ -461,7 +464,7 @@ export default function AdminConfiguracaoPage() {
 
                                     {isExpanded && (
                                         <div className="px-4 sm:px-6 pb-6 space-y-5 border-t border-bege-dark/10 pt-5">
-                                            {pendingCatFields.map((field) => {
+                                            {formFields.map((field) => {
                                                 const isDirty = dirtyFields[field.key] || false;
                                                 const isSaving = savingField === field.key;
                                                 const isSaved = savedField === field.key;
