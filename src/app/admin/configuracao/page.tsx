@@ -11,6 +11,9 @@ import {
     ChevronUp,
     Palette,
     FileText,
+    CheckCircle2,
+    Lightbulb,
+    Clock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -389,36 +392,48 @@ export default function AdminConfiguracaoPage() {
                     {/* Form Area */}
                     <div className="lg:col-span-2 space-y-8">
                         {/* Summary Card */}
-                        <div className="rounded-b-3xl rounded-tr-3xl bg-petroleo text-bege-light shadow-2xl p-6 sm:p-8 border border-white/10 relative overflow-hidden">
+                        <div className="rounded-b-3xl rounded-tr-3xl bg-[#5b3a1a] text-[#c1b59f] shadow-2xl p-6 sm:p-8 border border-white/10 relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-dourado/10 blur-3xl rounded-full -mr-16 -mt-16" />
 
                             <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                                 <div className="space-y-2">
-                                    <h3 className="font-serif text-2xl font-bold">
+                                    <h3 className="font-serif text-2xl font-bold text-white">
                                         {activeTab === "conteudo" ? "Conteúdo do Site" : "Visual do Site"}
                                     </h3>
-                                    <p className="text-bege/70 text-lg sm:text-xl max-w-2xl">
-                                        {activeTab === "conteudo"
-                                            ? <>Preencha os dados profissionais do seu site.
-                                                <span className="block mt-3 font-medium text-dourado-light italic">
-                                                    Dica: Ao final da página você encontra os itens já salvos. E temos um botão verde aqui do lado direito: &quot;Copiar Pendências&quot;. Clique nele e dê um CRTL+V para sua agenda do Whatsapp ou outra de sua preferência para você anotar e terminar de preencher depois. Fique tranquila(o) que tudo que você preencheu já está salvo.
-                                                    <br /><br />
-                                                    <span className="font-bold">NOTA: Qualquer alteração, leva 2 minutos para ser refletida no site.</span>
-                                                </span>
-                                              </>
-                                            : <>Personalize as cores, fontes e estilo do seu site.
-                                                <span className="block mt-3 font-medium text-dourado-light italic">
-                                                    Clique na cor para abrir a paleta. Escolha a fonte nos menus.
-                                                </span>
-                                              </>
-                                        }
-                                    </p>
+                                    {activeTab === "conteudo" ? (
+                                        <div className="flex flex-col gap-4 text-[#c1b59f] mt-4 max-w-2xl">
+                                            {/* Bloco 1 */}
+                                            <div className="flex items-center gap-2 text-sm">
+                                                <CheckCircle2 className="w-5 h-5 text-white shrink-0" />
+                                                <p>Preencha seus dados. Tudo o que você digita é salvo automaticamente.</p>
+                                            </div>
+
+                                            {/* Bloco 2 */}
+                                            <div className="bg-[#c1b59f]/10 p-4 rounded-md border border-[#c1b59f]/20 flex gap-3 items-start">
+                                                <Lightbulb className="w-5 h-5 text-white shrink-0 mt-0.5" />
+                                                <p className="text-sm">Sem tempo agora? Use o botão "Copiar Pendências" ao lado para colar no WhatsApp e terminar de preencher depois.</p>
+                                            </div>
+
+                                            {/* Bloco 3 */}
+                                            <div className="flex gap-2 items-center text-sm opacity-90">
+                                                <Clock className="w-5 h-5 text-white shrink-0" />
+                                                <p>Nota: Alterações levam cerca de 2 minutos para refletir no site no ar.</p>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <div className="text-[#c1b59f] text-lg sm:text-xl max-w-2xl mt-4">
+                                            <p>Personalize as cores, fontes e estilo do seu site.</p>
+                                            <span className="block mt-3 font-medium text-white">
+                                                Clique na cor para abrir a paleta. Escolha a fonte nos menus.
+                                            </span>
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="flex flex-col items-center md:items-end bg-white/5 p-4 rounded-2xl border border-white/10 min-w-[140px]">
-                                    <span className="text-3xl font-bold text-dourado">
+                                    <span className="text-3xl font-bold text-white">
                                         {percentage}%
                                     </span>
-                                    <span className="text-[10px] uppercase tracking-widest text-bege/40 mt-1">Concluído</span>
+                                    <span className="text-[10px] uppercase tracking-widest text-[#c1b59f] mt-1">Concluído</span>
                                     <div className="h-1.5 w-24 bg-white/20 rounded-full mt-3 overflow-hidden">
                                         <div
                                             className="h-full bg-dourado transition-all duration-1000 ease-out"
