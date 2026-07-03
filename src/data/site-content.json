@@ -51,6 +51,6 @@
     "fonteTitulos": "Lora",
     "fonteCorpo": "Inter",
     "formatoCantos": "reto",
-    "estiloBotoes": ""
+    "estiloBotoes": "contorno"
   }
 }
