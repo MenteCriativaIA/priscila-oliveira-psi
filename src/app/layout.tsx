@@ -117,11 +117,10 @@ const siteStyle: CssVars = {
     cornerRadiusMap[designSystem.formatoCantos] ?? cornerRadiusMap.suave,
 };
 
+const siteUrl = "https://www.priolivepsi.com.br";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    `https://${process.env.VERCEL_URL ?? "www.priolivepsi.com.br"}`
-  ),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Priscila Oliveira | Psicóloga no Méier e Online",
     template: "%s | Priscila Oliveira Psicóloga",
@@ -144,7 +143,7 @@ export const metadata: Metadata = {
     "Priscila Oliveira",
   ],
   alternates: {
-    canonical: "/",
+    canonical: siteUrl,
   },
   category: "healthcare",
   icons: {
@@ -158,7 +157,7 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
-    url: "/",
+    url: siteUrl,
     locale: "pt_BR",
     siteName: "Priscila Oliveira Psicóloga",
     title: "Priscila Oliveira | Psicóloga no Méier e Online",
@@ -166,7 +165,7 @@ export const metadata: Metadata = {
       "Psicoterapia com Terapia Cognitivo-Comportamental (TCC), atendimento presencial no Méier, Rio de Janeiro, e online.",
     images: [
       {
-        url: "/android-chrome-512x512.png",
+        url: `${siteUrl}/android-chrome-512x512.png`,
         width: 512,
         height: 512,
         alt: "Priscila Oliveira – Psicóloga Clínica",
@@ -178,7 +177,7 @@ export const metadata: Metadata = {
     title: "Priscila Oliveira | Psicóloga no Méier e Online",
     description:
       "Psicoterapia com TCC para ansiedade, autoestima, relacionamentos e depressão. Atendimento no Méier e online.",
-    images: ["/android-chrome-512x512.png"],
+    images: [`${siteUrl}/android-chrome-512x512.png`],
   },
   robots: {
     index: true,
