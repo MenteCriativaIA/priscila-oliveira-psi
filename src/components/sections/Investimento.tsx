@@ -4,10 +4,20 @@ import { motion } from "framer-motion";
 import { Clock, Monitor, CreditCard } from "lucide-react";
 import siteContent from "@/data/site-content.json";
 
+function formatSessionValue(value?: string) {
+    const cleanValue = value?.trim();
+    if (!cleanValue) return "Consulte valores via WhatsApp";
+
+    if (/^(r\$|\d)/i.test(cleanValue)) return cleanValue;
+
+    return cleanValue;
+}
+
 export function Investimento() {
     const inv = siteContent.investimento;
     const phone = siteContent.telefoneWhatsApp || "5511999999999";
     const waUrl = `https://wa.me/${phone.replace(/\D/g, "")}?text=${encodeURIComponent("Olá! Gostaria de saber mais sobre os valores das consultas.")}`;
+    const sessionValue = formatSessionValue(inv.valorSessao);
 
     return (
         <section id="investimento" className="bg-bege py-24 md:py-32">
@@ -46,15 +56,9 @@ export function Investimento() {
                                 Sessão de Psicoterapia
                             </h3>
                             <div className="mt-4">
-                                {inv.valorSessao ? (
-                                    <span className="text-4xl font-bold text-dourado-light">
-                                        R$ {inv.valorSessao}
-                                    </span>
-                                ) : (
-                                    <span className="text-lg text-bege/80">
-                                        Consulte valores via WhatsApp
-                                    </span>
-                                )}
+                                <span className="text-2xl font-bold text-dourado-light sm:text-3xl">
+                                    {sessionValue}
+                                </span>
                             </div>
                         </div>
 

@@ -2,22 +2,15 @@
 
 import { LogOut } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
 export function QuickExitButton() {
     const pathname = usePathname();
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     const handleExit = () => {
         // Replace current history entry so back button won't return
         window.location.replace("https://www.google.com");
     };
 
-    if (!mounted) return null;
     if (pathname?.startsWith("/admin")) return null;
 
     return (

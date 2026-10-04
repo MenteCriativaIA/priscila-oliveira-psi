@@ -7,19 +7,19 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Lora", ui-serif, Georgia, serif;
+  --font-sans: var(--site-body-font);
+  --font-serif: var(--site-title-font);
 
   /* Design System - Priscila Oliveira */
-  --color-petroleo: #1B4F5C;
-  --color-petroleo-light: #2a7a8c;
-  --color-petroleo-dark: #0f3340;
-  --color-dourado: #C89B5E;
-  --color-dourado-light: #d4af7a;
-  --color-dourado-dark: #a67d42;
-  --color-bege: #EDE7DC;
-  --color-bege-light: #F5F1EA;
-  --color-bege-dark: #D9CFC0;
+  --color-petroleo: var(--site-primary);
+  --color-petroleo-light: color-mix(in srgb, var(--site-primary) 82%, white);
+  --color-petroleo-dark: color-mix(in srgb, var(--site-primary) 75%, black);
+  --color-dourado: var(--site-accent);
+  --color-dourado-light: color-mix(in srgb, var(--site-accent) 78%, white);
+  --color-dourado-dark: color-mix(in srgb, var(--site-accent) 82%, black);
+  --color-bege: var(--site-background);
+  --color-bege-light: color-mix(in srgb, var(--site-background) 70%, white);
+  --color-bege-dark: color-mix(in srgb, var(--site-background) 82%, black);
 
   /* shadcn tokens */
   --color-sidebar-ring: var(--sidebar-ring);
@@ -61,38 +61,43 @@
 }
 
 :root {
+  --site-primary: #1B4F5C;
+  --site-accent: #C89B5E;
+  --site-background: #EDE7DC;
+  --site-title-font: var(--font-lora), ui-serif, Georgia, serif;
+  --site-body-font: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --radius: 0.625rem;
-  --background: #EDE7DC;
-  --foreground: #1B4F5C;
-  --card: #F5F1EA;
-  --card-foreground: #1B4F5C;
-  --popover: #F5F1EA;
-  --popover-foreground: #1B4F5C;
-  --primary: #1B4F5C;
-  --primary-foreground: #EDE7DC;
-  --secondary: #D9CFC0;
-  --secondary-foreground: #1B4F5C;
-  --muted: #D9CFC0;
-  --muted-foreground: #2a7a8c;
-  --accent: #C89B5E;
+  --background: var(--site-background);
+  --foreground: var(--site-primary);
+  --card: color-mix(in srgb, var(--site-background) 70%, white);
+  --card-foreground: var(--site-primary);
+  --popover: color-mix(in srgb, var(--site-background) 70%, white);
+  --popover-foreground: var(--site-primary);
+  --primary: var(--site-primary);
+  --primary-foreground: var(--site-background);
+  --secondary: color-mix(in srgb, var(--site-background) 82%, black);
+  --secondary-foreground: var(--site-primary);
+  --muted: color-mix(in srgb, var(--site-background) 82%, black);
+  --muted-foreground: color-mix(in srgb, var(--site-primary) 82%, white);
+  --accent: var(--site-accent);
   --accent-foreground: #ffffff;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #D9CFC0;
-  --input: #D9CFC0;
-  --ring: #C89B5E;
-  --chart-1: #1B4F5C;
-  --chart-2: #C89B5E;
-  --chart-3: #2a7a8c;
-  --chart-4: #d4af7a;
-  --chart-5: #0f3340;
-  --sidebar: #F5F1EA;
-  --sidebar-foreground: #1B4F5C;
-  --sidebar-primary: #1B4F5C;
-  --sidebar-primary-foreground: #EDE7DC;
-  --sidebar-accent: #D9CFC0;
-  --sidebar-accent-foreground: #1B4F5C;
-  --sidebar-border: #D9CFC0;
-  --sidebar-ring: #C89B5E;
+  --border: color-mix(in srgb, var(--site-background) 82%, black);
+  --input: color-mix(in srgb, var(--site-background) 82%, black);
+  --ring: var(--site-accent);
+  --chart-1: var(--site-primary);
+  --chart-2: var(--site-accent);
+  --chart-3: color-mix(in srgb, var(--site-primary) 82%, white);
+  --chart-4: color-mix(in srgb, var(--site-accent) 78%, white);
+  --chart-5: color-mix(in srgb, var(--site-primary) 75%, black);
+  --sidebar: color-mix(in srgb, var(--site-background) 70%, white);
+  --sidebar-foreground: var(--site-primary);
+  --sidebar-primary: var(--site-primary);
+  --sidebar-primary-foreground: var(--site-background);
+  --sidebar-accent: color-mix(in srgb, var(--site-background) 82%, black);
+  --sidebar-accent-foreground: var(--site-primary);
+  --sidebar-border: color-mix(in srgb, var(--site-background) 82%, black);
+  --sidebar-ring: var(--site-accent);
 }
 
 @layer base {
@@ -101,10 +106,10 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--site-body-font);
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Lora", ui-serif, Georgia, serif;
+    font-family: var(--site-title-font);
   }
 }
 
@@ -118,12 +123,12 @@ html {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #EDE7DC;
+  background: var(--site-background);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1B4F5C;
+  background: var(--site-primary);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a7a8c;
+  background: color-mix(in srgb, var(--site-primary) 82%, white);
 }

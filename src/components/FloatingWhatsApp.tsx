@@ -3,17 +3,10 @@
 import { MessageCircle } from "lucide-react";
 import siteContent from "@/data/site-content.json";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
 export function FloatingWhatsApp() {
     const pathname = usePathname();
-    const [mounted, setMounted] = useState(false);
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    if (!mounted) return null;
     const phone = siteContent.telefoneWhatsApp || "5511999999999";
     const message = encodeURIComponent(
         "Olá! Gostaria de agendar uma consulta."

@@ -5,6 +5,7 @@ import fs from "fs";
 import path from "path";
 
 const DATA_PATH = path.join(process.cwd(), "src", "data", "site-content.json");
+const ADMIN_SECRET = process.env.ADMIN_SECRET;
 
 // Environment variables for GitHub Integration
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
@@ -12,6 +13,49 @@ const GITHUB_OWNER = process.env.GITHUB_OWNER || "MenteCriativaIA";
 const GITHUB_REPO = process.env.GITHUB_REPO || "priscila-oliveira-psi";
 const GITHUB_BRANCH = process.env.GITHUB_BRANCH || "master";
 const GITHUB_FILE_PATH = "src/data/site-content.json";
+
+type SiteContent = Record<string, unknown>;
+type GitHubContentResponse = {
+    content: string;
+    sha: string;
+};
+
+function isAuthorized(request: Request) {
+    if (!ADMIN_SECRET) return process.env.NODE_ENV !== "production";
+
+    const providedSecret = request.headers.get("x-admin-secret");
+    return providedSecret === ADMIN_SECRET;
+}
+
+function unauthorized() {
+    return NextResponse.json(
+        { error: "Unauthorized" },
+        {
+            status: 401,
+            headers: { "Cache-Control": "no-store" },
+        }
+    );
+}
+
+function validateUpdate(field: unknown, value: unknown) {
+    if (typeof field !== "string" || !field.trim()) {
+        return "Field name is required";
+    }
+
+    if (!/^[a-zA-Z0-9_.]+$/.test(field)) {
+        return "Invalid field name";
+    }
+
+    if (typeof value !== "string") {
+        return "Field value must be a string";
+    }
+
+    if (value.length > 5000) {
+        return "Field value is too long";
+    }
+
+    return null;
+}
 
 async function getGitHubContent() {
     const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}?ref=${GITHUB_BRANCH}`;
@@ -27,12 +71,12 @@ async function getGitHubContent() {
         throw new Error(`GitHub API error: ${response.statusText}`);
     }
 
-    const data = await response.json();
+    const data = (await response.json()) as GitHubContentResponse;
     const content = JSON.parse(Buffer.from(data.content, "base64").toString("utf-8"));
     return { content, sha: data.sha };
 }
 
-async function updateGitHubContent(content: any, sha: string, message: string) {
+async function updateGitHubContent(content: SiteContent, sha: string, message: string) {
     const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`;
     const response = await fetch(url, {
         method: "PUT",
@@ -66,17 +110,23 @@ function writeLocalContent(data: Record<string, unknown>) {
     fs.writeFileSync(DATA_PATH, JSON.stringify(data, null, 2), "utf-8");
 }
 
-export async function GET() {
+export async function GET(request: Request) {
     try {
+        if (!isAuthorized(request)) return unauthorized();
+
         // If we have a token, prefer GitHub to get the absolute latest state
         // (especially useful in the admin panel to avoid stale cache from Vercel)
         if (GITHUB_TOKEN) {
             const { content } = await getGitHubContent();
-            return NextResponse.json(content);
+            return NextResponse.json(content, {
+                headers: { "Cache-Control": "no-store" },
+            });
         }
 
         const content = readLocalContent();
-        return NextResponse.json(content);
+        return NextResponse.json(content, {
+            headers: { "Cache-Control": "no-store" },
+        });
     } catch (error) {
         console.error("GET error:", error);
         return NextResponse.json(
@@ -88,17 +138,22 @@ export async function GET() {
 
 export async function PATCH(request: Request) {
     try {
+        if (!isAuthorized(request)) return unauthorized();
+
         const body = await request.json();
         const { field, value } = body;
+        const validationError = validateUpdate(field, value);
 
-        if (!field) {
+        if (validationError) {
             return NextResponse.json(
-                { error: "Field name is required" },
+                { error: validationError },
                 { status: 400 }
             );
         }
 
-        let content: any;
+        const fieldName = field as string;
+        const fieldValue = value as string;
+        let content: SiteContent;
         let sha: string | undefined;
 
         if (GITHUB_TOKEN) {
@@ -110,7 +165,7 @@ export async function PATCH(request: Request) {
         }
 
         // Support nested fields like "sobreMim.texto"
-        const keys = field.split(".");
+        const keys = fieldName.split(".");
         let target: Record<string, unknown> = content;
 
         for (let i = 0; i < keys.length - 1; i++) {
@@ -120,24 +175,24 @@ export async function PATCH(request: Request) {
             target = target[keys[i]] as Record<string, unknown>;
         }
 
-        target[keys[keys.length - 1]] = value;
+        target[keys[keys.length - 1]] = fieldValue;
 
         if (GITHUB_TOKEN && sha) {
             await updateGitHubContent(
                 content,
                 sha,
-                `Admin Update: ${field}`
+                `Admin Update: ${fieldName}`
             );
         } else {
             // Fallback to local file for development
             writeLocalContent(content);
         }
 
-        return NextResponse.json({ success: true, field, value });
-    } catch (error: any) {
+        return NextResponse.json({ success: true, field: fieldName, value: fieldValue });
+    } catch (error) {
         console.error("PATCH error:", error);
         return NextResponse.json(
-            { error: error.message || "Failed to update site content" },
+            { error: error instanceof Error ? error.message : "Failed to update site content" },
             { status: 500 }
         );
     }

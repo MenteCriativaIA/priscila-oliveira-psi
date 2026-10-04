@@ -13,7 +13,7 @@
     "youtubeVideoId": ""
   },
   "servicos": {
-    "area1": "",
+    "area1": "Ansiedade e Regulação Emocional",
     "frase1": "Ajudo você a identificar os gatilhos da ansiedade e a usar técnicas da TCC para retomar o equilíbrio e dominar suas emoções.",
     "area2": " Autoestima e Autoconhecimento",
     "frase2": " Trabalhamos juntos para reestruturar a visão que você tem de si mesma, fortalecendo sua confiança e mudando crenças limitantes.",
@@ -46,7 +46,7 @@
   "politicaPrivacidade": "/politica-de-privacidade",
   "designSystem": {
     "corPrincipal": "#5b3a1a",
-    "corDestaque": "",
+    "corDestaque": "#C89B5E",
     "corFundo": "#c1b59f",
     "fonteTitulos": "Lora",
     "fonteCorpo": "Inter",

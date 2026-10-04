@@ -9,8 +9,8 @@ import {
     ClipboardCheck,
     ChevronDown,
     ChevronUp,
-    Palette,
     FileText,
+    Palette,
     CheckCircle2,
     Lightbulb,
     Clock,
@@ -67,58 +67,48 @@ const CONTENT_FIELDS: FieldConfig[] = [
     { key: "sobreMim.youtubeVideoId", label: "YouTube Video ID (Background)", type: "text", placeholder: "Ex: eJEWocsBrbo", category: "Sobre Mim" },
 ];
 
-// ── Tab: Visual do Site ──
 const DESIGN_FIELDS: FieldConfig[] = [
     {
         key: "designSystem.corPrincipal", label: "Cor Principal do Site", type: "color",
-        placeholder: "#1B4F5C", category: "🎨 Cores do Site",
+        placeholder: "#1B4F5C", category: "Cores do Site",
     },
     {
         key: "designSystem.corDestaque", label: "Cor de Destaque (botões e links)", type: "color",
-        placeholder: "#C89B5E", category: "🎨 Cores do Site",
+        placeholder: "#C89B5E", category: "Cores do Site",
     },
     {
         key: "designSystem.corFundo", label: "Cor de Fundo", type: "color",
-        placeholder: "#EDE7DC", category: "🎨 Cores do Site",
+        placeholder: "#EDE7DC", category: "Cores do Site",
     },
     {
-        key: "designSystem.fonteTitulos", label: "Estilo das Letras dos Títulos", type: "select",
-        placeholder: "Escolha um estilo...", category: "✍️ Estilo dos Textos",
+        key: "designSystem.fonteTitulos", label: "Fonte dos Títulos", type: "select",
+        placeholder: "Escolha um estilo...", category: "Tipografia",
         options: [
-            { value: "Lora", label: "Lora — Elegante e clássico" },
-            { value: "Playfair Display", label: "Playfair Display — Sofisticado" },
-            { value: "Merriweather", label: "Merriweather — Tradicional" },
-            { value: "Cormorant Garamond", label: "Cormorant Garamond — Refinado" },
-            { value: "EB Garamond", label: "EB Garamond — Atemporal" },
+            { value: "Lora", label: "Lora - Elegante e clássico" },
+            { value: "Playfair Display", label: "Playfair Display - Sofisticado" },
+            { value: "Merriweather", label: "Merriweather - Tradicional" },
+            { value: "Cormorant Garamond", label: "Cormorant Garamond - Refinado" },
+            { value: "EB Garamond", label: "EB Garamond - Atemporal" },
         ],
     },
     {
-        key: "designSystem.fonteCorpo", label: "Estilo das Letras do Corpo", type: "select",
-        placeholder: "Escolha um estilo...", category: "✍️ Estilo dos Textos",
+        key: "designSystem.fonteCorpo", label: "Fonte do Corpo", type: "select",
+        placeholder: "Escolha um estilo...", category: "Tipografia",
         options: [
-            { value: "Inter", label: "Inter — Moderno e limpo" },
-            { value: "Roboto", label: "Roboto — Profissional" },
-            { value: "Open Sans", label: "Open Sans — Amigável" },
-            { value: "Poppins", label: "Poppins — Jovem e arredondado" },
-            { value: "Nunito", label: "Nunito — Suave e acolhedor" },
+            { value: "Inter", label: "Inter - Moderno e limpo" },
+            { value: "Roboto", label: "Roboto - Profissional" },
+            { value: "Open Sans", label: "Open Sans - Amigável" },
+            { value: "Poppins", label: "Poppins - Jovem e geométrico" },
+            { value: "Nunito", label: "Nunito - Suave e acolhedor" },
         ],
     },
     {
-        key: "designSystem.formatoCantos", label: "Formato dos Cantos (cards e botões)", type: "select",
-        placeholder: "Escolha um formato...", category: "📐 Formato e Estilo",
+        key: "designSystem.formatoCantos", label: "Formato dos Cantos", type: "select",
+        placeholder: "Escolha um formato...", category: "Formato",
         options: [
-            { value: "reto", label: "Reto — Cantos quadrados" },
-            { value: "suave", label: "Suave — Levemente arredondados" },
-            { value: "arredondado", label: "Arredondado — Bem curvos" },
-        ],
-    },
-    {
-        key: "designSystem.estiloBotoes", label: "Estilo dos Botões", type: "select",
-        placeholder: "Escolha um estilo...", category: "📐 Formato e Estilo",
-        options: [
-            { value: "solido", label: "Sólido — Preenchido com cor" },
-            { value: "contorno", label: "Contorno — Só a borda colorida" },
-            { value: "arredondado", label: "Arredondado — Formato pílula" },
+            { value: "reto", label: "Reto - Cantos discretos" },
+            { value: "suave", label: "Suave - Levemente arredondados" },
+            { value: "arredondado", label: "Arredondado - Mais curvos" },
         ],
     },
 ];
@@ -147,8 +137,10 @@ type TabKey = "conteudo" | "visual";
 
 export default function AdminConfiguracaoPage() {
     const [activeTab, setActiveTab] = useState<TabKey>("conteudo");
-    const [content, setContent] = useState<Record<string, unknown> | null>(null);
     const [loading, setLoading] = useState(true);
+    const [adminSecret, setAdminSecret] = useState("");
+    const [isUnlocked, setIsUnlocked] = useState(false);
+    const [authError, setAuthError] = useState<string | null>(null);
     const [savingField, setSavingField] = useState<string | null>(null);
     const [savedField, setSavedField] = useState<string | null>(null);
     const [errorField, setErrorField] = useState<string | null>(null);
@@ -159,16 +151,41 @@ export default function AdminConfiguracaoPage() {
     const [copied, setCopied] = useState(false);
     const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
 
-    // Which fields belong to the active tab
     const activeFields = activeTab === "conteudo" ? CONTENT_FIELDS : DESIGN_FIELDS;
 
+    useEffect(() => {
+        const savedSecret = window.localStorage.getItem("priolivepsi-admin-secret");
+        if (savedSecret) {
+            setAdminSecret(savedSecret);
+            setIsUnlocked(true);
+        } else {
+            setLoading(false);
+        }
+    }, []);
+
     const fetchContent = useCallback(async () => {
+        if (!adminSecret) return;
+        setLoading(true);
+        setAuthError(null);
+
         try {
             const res = await fetch(`/api/site-content?t=${Date.now()}`, {
                 cache: "no-store",
+                headers: {
+                    "x-admin-secret": adminSecret,
+                },
             });
+
+            if (res.status === 401) {
+                window.localStorage.removeItem("priolivepsi-admin-secret");
+                setIsUnlocked(false);
+                setAuthError("Senha administrativa inválida.");
+                return;
+            }
+
+            if (!res.ok) throw new Error("Failed to fetch content");
+
             const data = await res.json();
-            setContent(data);
 
             const values: Record<string, string> = {};
             ALL_FIELDS.forEach((f) => {
@@ -183,14 +200,29 @@ export default function AdminConfiguracaoPage() {
             setExpandedCategories(cats);
         } catch {
             console.error("Failed to fetch content");
+            setAuthError("Não foi possível carregar o conteúdo agora.");
         } finally {
             setLoading(false);
         }
-    }, []);
+    }, [adminSecret]);
 
     useEffect(() => {
-        fetchContent();
-    }, [fetchContent]);
+        if (isUnlocked) fetchContent();
+    }, [fetchContent, isUnlocked]);
+
+    const handleUnlock = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const trimmedSecret = adminSecret.trim();
+
+        if (!trimmedSecret) {
+            setAuthError("Informe a senha administrativa.");
+            return;
+        }
+
+        window.localStorage.setItem("priolivepsi-admin-secret", trimmedSecret);
+        setAdminSecret(trimmedSecret);
+        setIsUnlocked(true);
+    };
 
     const handleFieldChange = (key: string, value: string) => {
         setFieldValues((prev) => ({ ...prev, [key]: value }));
@@ -205,9 +237,18 @@ export default function AdminConfiguracaoPage() {
         try {
             const res = await fetch("/api/site-content", {
                 method: "PATCH",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-admin-secret": adminSecret,
+                },
                 body: JSON.stringify({ field, value: fieldValues[field] }),
             });
+
+            if (res.status === 401) {
+                window.localStorage.removeItem("priolivepsi-admin-secret");
+                setIsUnlocked(false);
+                throw new Error("Unauthorized");
+            }
 
             if (!res.ok) throw new Error("Save failed");
 
@@ -252,7 +293,10 @@ export default function AdminConfiguracaoPage() {
         try {
             await fetch("/api/site-content", {
                 method: "PATCH",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-admin-secret": adminSecret,
+                },
                 body: JSON.stringify({ field: f.key, value: "" }),
             });
         } catch { /* ignore */ }
@@ -270,6 +314,43 @@ export default function AdminConfiguracaoPage() {
         return (
             <div className="flex min-h-screen items-center justify-center bg-bege">
                 <Loader2 className="h-8 w-8 animate-spin text-petroleo" />
+            </div>
+        );
+    }
+
+    if (!isUnlocked) {
+        return (
+            <div className="flex min-h-screen items-center justify-center bg-bege px-4">
+                <form
+                    onSubmit={handleUnlock}
+                    className="w-full max-w-md rounded-2xl border border-bege-dark/20 bg-white/80 p-8 shadow-xl"
+                >
+                    <h1 className="font-serif text-2xl font-bold text-petroleo">
+                        Acesso administrativo
+                    </h1>
+                    <p className="mt-2 text-sm leading-relaxed text-petroleo/70">
+                        Informe a senha administrativa para carregar e editar o conteúdo do site.
+                    </p>
+                    <label className="mt-6 block text-sm font-medium text-petroleo">
+                        Senha administrativa
+                    </label>
+                    <input
+                        type="password"
+                        value={adminSecret}
+                        onChange={(event) => setAdminSecret(event.target.value)}
+                        className="mt-2 w-full rounded-xl border border-bege-dark/30 bg-white px-4 py-3 text-sm text-petroleo placeholder:text-petroleo/30 focus:border-dourado focus:outline-none focus:ring-2 focus:ring-dourado/20"
+                        placeholder="Digite a senha"
+                    />
+                    {authError && (
+                        <p className="mt-3 flex items-center gap-2 text-sm text-red-600">
+                            <AlertCircle className="h-4 w-4" />
+                            {authError}
+                        </p>
+                    )}
+                    <Button type="submit" className="mt-6 w-full rounded-xl">
+                        Entrar
+                    </Button>
+                </form>
             </div>
         );
     }
@@ -411,7 +492,7 @@ export default function AdminConfiguracaoPage() {
                                             {/* Bloco 2 */}
                                             <div className="bg-[#c1b59f]/10 p-4 rounded-md border border-[#c1b59f]/20 flex gap-3 items-start">
                                                 <Lightbulb className="w-5 h-5 text-white shrink-0 mt-0.5" />
-                                                <p className="text-sm">Sem tempo agora? Use o botão "Copiar Pendências" ao lado para colar no WhatsApp e terminar de preencher depois.</p>
+                                                <p className="text-sm">Sem tempo agora? Use o botão &ldquo;Copiar Pendências&rdquo; ao lado para colar no WhatsApp e terminar de preencher depois.</p>
                                             </div>
 
                                             {/* Bloco 3 */}
@@ -421,11 +502,19 @@ export default function AdminConfiguracaoPage() {
                                             </div>
                                         </div>
                                     ) : (
-                                        <div className="text-[#c1b59f] text-lg sm:text-xl max-w-2xl mt-4">
-                                            <p>Personalize as cores, fontes e estilo do seu site.</p>
-                                            <span className="block mt-3 font-medium text-white">
-                                                Clique na cor para abrir a paleta. Escolha a fonte nos menus.
-                                            </span>
+                                        <div className="flex flex-col gap-4 text-[#c1b59f] mt-4 max-w-2xl">
+                                            <div className="flex items-center gap-2 text-sm">
+                                                <CheckCircle2 className="w-5 h-5 text-white shrink-0" />
+                                                <p>As cores, fontes e cantos salvos aqui são aplicados ao site publicado.</p>
+                                            </div>
+                                            <div className="bg-[#c1b59f]/10 p-4 rounded-md border border-[#c1b59f]/20 flex gap-3 items-start">
+                                                <Lightbulb className="w-5 h-5 text-white shrink-0 mt-0.5" />
+                                                <p className="text-sm">Use contraste suficiente entre fundo, textos e botões para manter a leitura confortável.</p>
+                                            </div>
+                                            <div className="flex gap-2 items-center text-sm opacity-90">
+                                                <Clock className="w-5 h-5 text-white shrink-0" />
+                                                <p>Nota: Alterações levam cerca de 2 minutos para refletir no site no ar.</p>
+                                            </div>
                                         </div>
                                     )}
                                 </div>
