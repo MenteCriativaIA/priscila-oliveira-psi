@@ -75,6 +75,7 @@ export default function PoliticaPrivacidadePage() {
                             <li>Responder a solicitações de contato e agendamento de consultas</li>
                             <li>Enviar informações relevantes sobre os serviços oferecidos</li>
                             <li>Melhorar a experiência de navegação no site</li>
+                            <li>Medir o desempenho dos anúncios do Google (veja o item 4)</li>
                             <li>Cumprir obrigações legais e regulatórias</li>
                         </ul>
                     </section>
@@ -91,6 +92,7 @@ export default function PoliticaPrivacidadePage() {
                             <li>Cumprimento de obrigação legal ou regulatória</li>
                             <li>Proteção dos direitos da profissional responsável</li>
                             <li>Execução de serviços contratados (ex: plataformas de agendamento)</li>
+                            <li>Medição de anúncios pelo Google (Google Ads), descrita abaixo</li>
                         </ul>
                         <p className="text-petroleo/80 leading-relaxed mt-3">
                             <strong>Medição de anúncios (Google Ads):</strong> este site usa a
@@ -99,8 +101,8 @@ export default function PoliticaPrivacidadePage() {
                             o Google recebe dados de navegação, como o código do clique no anúncio,
                             o endereço IP, o tipo de navegador e a página visitada, e pode usar
                             cookies próprios. A medição vale para todos os visitantes e serve
-                            apenas para avaliar o desempenho dos anúncios: ela não é usada para
-                            mostrar anúncios personalizados, e o conteúdo das conversas pelo
+                            apenas para avaliar o desempenho dos anúncios: a etiqueta é configurada
+                            para não liberar esses dados para anúncios personalizados, e o conteúdo das conversas pelo
                             WhatsApp não é coletado pelo site nem enviado ao Google. O tratamento
                             desses dados pelo Google segue a política de privacidade dele, em{" "}
                             <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-dourado hover:text-dourado-dark underline">policies.google.com/privacy</a>.
