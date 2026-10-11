@@ -3,6 +3,7 @@
 import { MessageCircle } from "lucide-react";
 import siteContent from "@/data/site-content.json";
 import { linkWhatsApp } from "@/lib/whatsapp";
+import { registrarCliqueWhatsApp } from "@/lib/conversao";
 import { usePathname } from "next/navigation";
 
 export function FloatingWhatsApp() {
@@ -17,6 +18,7 @@ export function FloatingWhatsApp() {
             href={url}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={registrarCliqueWhatsApp}
             aria-label="Falar no WhatsApp"
             className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl md:bottom-8 md:right-8 md:h-16 md:w-16"
         >

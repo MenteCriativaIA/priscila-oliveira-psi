@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Clock, Monitor, CreditCard } from "lucide-react";
 import siteContent from "@/data/site-content.json";
 import { linkWhatsApp } from "@/lib/whatsapp";
+import { registrarCliqueWhatsApp } from "@/lib/conversao";
 
 function formatSessionValue(value?: string) {
     const cleanValue = value?.trim();
@@ -104,6 +105,7 @@ export function Investimento() {
                                 href={waUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                onClick={registrarCliqueWhatsApp}
                                 className="mt-4 block w-full rounded-full bg-dourado py-4 text-center text-base font-semibold text-white shadow-md transition-all duration-300 hover:bg-dourado-dark hover:shadow-lg hover:scale-[1.02]"
                             >
                                 Agendar Consulta

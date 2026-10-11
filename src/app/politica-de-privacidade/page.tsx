@@ -92,6 +92,19 @@ export default function PoliticaPrivacidadePage() {
                             <li>Proteção dos direitos da profissional responsável</li>
                             <li>Execução de serviços contratados (ex: plataformas de agendamento)</li>
                         </ul>
+                        <p className="text-petroleo/80 leading-relaxed mt-3">
+                            <strong>Medição de anúncios (Google Ads):</strong> este site usa a
+                            etiqueta do Google (Google tag) para saber quando um visitante que
+                            chegou por um anúncio do Google clica no botão de WhatsApp. Para isso,
+                            o Google recebe dados de navegação, como o código do clique no anúncio,
+                            o endereço IP, o tipo de navegador e a página visitada, e pode usar
+                            cookies próprios. A medição vale para todos os visitantes e serve
+                            apenas para avaliar o desempenho dos anúncios: ela não é usada para
+                            mostrar anúncios personalizados, e o conteúdo das conversas pelo
+                            WhatsApp não é coletado pelo site nem enviado ao Google. O tratamento
+                            desses dados pelo Google segue a política de privacidade dele, em{" "}
+                            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-dourado hover:text-dourado-dark underline">policies.google.com/privacy</a>.
+                        </p>
                     </section>
 
                     <section>
@@ -150,7 +163,7 @@ export default function PoliticaPrivacidadePage() {
 
                     <section className="border-t border-bege-dark/20 pt-8 mt-12">
                         <p className="text-petroleo/60 text-sm">
-                            Última atualização: Março de 2026
+                            Última atualização: Outubro de 2026
                         </p>
                         <p className="text-petroleo/60 text-sm mt-1">
                             Dúvidas? Entre em contato: <a href={`mailto:${email}`} className="text-dourado hover:text-dourado-dark underline">{email}</a>
