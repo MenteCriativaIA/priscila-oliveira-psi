@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import siteContent from "@/data/site-content.json";
+import { linkWhatsApp } from "@/lib/whatsapp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -111,8 +112,7 @@ export function HeroSequence() {
 
     const headline = siteContent.heroHeadline || "Psicóloga especializada em ansiedade, stress e depressão";
     const subheadline = siteContent.heroSubheadline || "Construir junto com você estratégias para clarear sua direção";
-    const phone = siteContent.telefoneWhatsApp || "5511999999999";
-    const waUrl = `https://wa.me/${phone.replace(/\D/g, "")}?text=${encodeURIComponent("Olá! Gostaria de agendar uma consulta.")}`;
+    const waUrl = linkWhatsApp(siteContent.telefoneWhatsApp, "Olá! Gostaria de agendar uma consulta.");
 
     return (
         <section ref={containerRef} className="relative h-[300vh]" id="hero">

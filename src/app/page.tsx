@@ -8,6 +8,7 @@ import { BlogPreview } from "@/components/sections/BlogPreview";
 import { EmergencyBanner } from "@/components/EmergencyBanner";
 import { Footer } from "@/components/Footer";
 import siteContent from "@/data/site-content.json";
+import { telefoneWhatsApp } from "@/lib/whatsapp";
 
 export default function Home() {
   const jsonLd = {
@@ -22,7 +23,7 @@ export default function Home() {
       name: siteContent.nomeCompleto,
       jobTitle: "Psicóloga Clínica",
       email: siteContent.emailProfissional,
-      telephone: siteContent.telefoneWhatsApp,
+      telephone: `+${telefoneWhatsApp(siteContent.telefoneWhatsApp)}`,
       sameAs: [siteContent.instagram, siteContent.linkedin].filter(Boolean),
     },
     areaServed: [

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Clock, Monitor, CreditCard } from "lucide-react";
 import siteContent from "@/data/site-content.json";
+import { linkWhatsApp } from "@/lib/whatsapp";
 
 function formatSessionValue(value?: string) {
     const cleanValue = value?.trim();
@@ -15,8 +16,7 @@ function formatSessionValue(value?: string) {
 
 export function Investimento() {
     const inv = siteContent.investimento;
-    const phone = siteContent.telefoneWhatsApp || "5511999999999";
-    const waUrl = `https://wa.me/${phone.replace(/\D/g, "")}?text=${encodeURIComponent("Olá! Gostaria de saber mais sobre os valores das consultas.")}`;
+    const waUrl = linkWhatsApp(siteContent.telefoneWhatsApp, "Olá! Gostaria de saber mais sobre os valores das consultas.");
     const sessionValue = formatSessionValue(inv.valorSessao);
 
     return (

@@ -2,16 +2,13 @@
 
 import { MessageCircle } from "lucide-react";
 import siteContent from "@/data/site-content.json";
+import { linkWhatsApp } from "@/lib/whatsapp";
 import { usePathname } from "next/navigation";
 
 export function FloatingWhatsApp() {
     const pathname = usePathname();
 
-    const phone = siteContent.telefoneWhatsApp || "5511999999999";
-    const message = encodeURIComponent(
-        "Olá! Gostaria de agendar uma consulta."
-    );
-    const url = `https://wa.me/${phone.replace(/\D/g, "")}?text=${message}`;
+    const url = linkWhatsApp(siteContent.telefoneWhatsApp, "Olá! Gostaria de agendar uma consulta.");
 
     if (pathname?.startsWith("/admin")) return null;
 
