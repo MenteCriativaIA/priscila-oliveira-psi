@@ -3,11 +3,15 @@
 import { Instagram, Linkedin, Mail, MapPin } from "lucide-react";
 import siteContent from "@/data/site-content.json";
 
-export function Footer() {
+export function Footer({ ocultarOnline = false }: { ocultarOnline?: boolean } = {}) {
     const nome = siteContent.nomeCompleto || "[Nome da Psicóloga]";
     const crp = siteContent.crp || "[CRP XXXXX/XX]";
     const email = siteContent.emailProfissional || "[email@exemplo.com]";
-    const endereco = siteContent.endereco || "[Endereço do consultório]";
+    // Páginas só do atendimento presencial (ex.: terapia de casal) escondem a linha do online.
+    const enderecoCompleto = siteContent.endereco || "[Endereço do consultório]";
+    const endereco = ocultarOnline
+        ? enderecoCompleto.split("\n").filter((linha) => !/online/i.test(linha)).join("\n")
+        : enderecoCompleto;
     const instagram = siteContent.instagram;
     const linkedin = siteContent.linkedin;
     const politica = siteContent.politicaPrivacidade || "/politica-de-privacidade";

@@ -9,7 +9,7 @@ import { BotaoWhatsApp } from "./BotaoWhatsApp";
 const siteUrl = "https://www.priolivepsi.com.br";
 
 export const metadata: Metadata = {
-    title: "Terapia de casal no Méier",
+    title: { absolute: "Terapia de casal no Méier" },
     description:
         "Terapia de casal no Méier, Rio de Janeiro, com a psicóloga Priscila Oliveira (CRP 0584054). Atendimento presencial com Terapia Cognitivo-Comportamental (TCC), sessões de 50 minutos.",
     alternates: {
@@ -49,9 +49,9 @@ export default function TerapiaDeCasalMeierPage() {
                     </h1>
                     <div className="mt-6 h-1 w-20 rounded-full bg-dourado" />
                     <p className="mt-6 text-lg text-bege/90 sm:text-xl font-light max-w-3xl">
-                        Um espaço seguro e livre de julgamentos para vocês dois conversarem
-                        sobre o que está difícil na relação, com acolhimento e a
-                        Terapia Cognitivo-Comportamental (TCC).
+                        Psicoterapia com acolhimento e Terapia Cognitivo-Comportamental (TCC)
+                        para casais: um espaço seguro e livre de julgamentos para vocês dois
+                        falarem do que está difícil na relação.
                     </p>
                     <p className="mt-4 text-dourado-light text-sm font-medium">
                         {nome} · Psicóloga Clínica · CRP {crp}
@@ -70,10 +70,10 @@ export default function TerapiaDeCasalMeierPage() {
                     </h2>
                     <div className="mt-4 h-1 w-16 rounded-full bg-dourado" />
                     <p className="mt-6 text-lg text-petroleo/80 leading-relaxed">
-                        Para casais que sentem que as conversas viraram discussão, que a
-                        distância entre os dois aumentou, ou que querem atravessar juntos uma
-                        fase de mudança. Não é preciso esperar uma crise para procurar a
-                        terapia de casal: ela também é um lugar para cuidar da relação.
+                        Para casais que querem entender o que está acontecendo entre os dois:
+                        quando as conversas viram discussão, quando a distância aumentou, ou
+                        quando vocês querem atravessar juntos uma fase de mudança. Aqui cada
+                        um encontra escuta, com responsabilidade e afeto.
                     </p>
                 </div>
             </section>
@@ -86,11 +86,11 @@ export default function TerapiaDeCasalMeierPage() {
                     </h2>
                     <div className="mt-4 h-1 w-16 rounded-full bg-dourado" />
                     <p className="mt-6 text-lg text-petroleo/80 leading-relaxed">
-                        Nas sessões, eu escuto cada um de vocês e, juntos, vamos investigar
-                        como os pensamentos de um sobre o outro influenciam o que sentem e a
-                        forma como reagem. A TCC é uma abordagem prática e estruturada: o
-                        objetivo não é apontar culpados, mas olhar para os padrões que se
-                        repetem na relação e trabalhar a comunicação entre os dois.
+                        A TCC é uma abordagem prática e estruturada. Nas sessões, nós vamos
+                        investigar juntos quais pensamentos (crenças) estão gerando sofrimento
+                        ou comportamentos que atrapalham a relação. O objetivo não é apenas
+                        &quot;desabafar&quot; nem apontar culpados, mas trabalhar a comunicação
+                        entre vocês dois, com ferramentas concretas para o dia a dia.
                     </p>
                     <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
                         <div className="flex items-start gap-4 rounded-3xl bg-white/80 border border-bege-dark/20 p-6">
@@ -160,8 +160,8 @@ export default function TerapiaDeCasalMeierPage() {
                         Vamos conversar?
                     </h2>
                     <p className="mt-6 text-lg text-bege/90 font-light max-w-2xl mx-auto">
-                        Me chame no WhatsApp para tirar dúvidas e combinar o primeiro horário
-                        de vocês.
+                        Será um prazer acolher vocês. Me chame no WhatsApp para tirar dúvidas
+                        e combinar o primeiro horário.
                     </p>
                     <div className="mt-10 flex justify-center">
                         <BotaoWhatsApp texto="Agendar pelo WhatsApp" />
@@ -173,7 +173,7 @@ export default function TerapiaDeCasalMeierPage() {
             </section>
 
             <EmergencyBanner />
-            <Footer />
+            <Footer ocultarOnline />
         </main>
     );
 }
