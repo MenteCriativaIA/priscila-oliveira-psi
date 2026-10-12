@@ -15,8 +15,34 @@ export const metadata: Metadata = {
     alternates: {
         canonical: `${siteUrl}/terapia-de-casal-meier`,
     },
+    // Os campos abaixo substituem os do layout, que falam do atendimento online.
+    keywords: [
+        "terapia de casal Méier",
+        "terapia de casal Rio de Janeiro",
+        "psicóloga para casal Méier",
+        "psicoterapia de casal",
+        "terapia de casal TCC",
+        "Priscila Oliveira",
+    ],
     openGraph: {
+        type: "website",
+        locale: "pt_BR",
+        siteName: "Priscila Oliveira Psicóloga",
         url: `${siteUrl}/terapia-de-casal-meier`,
+        title: "Terapia de casal no Méier | Priscila Oliveira Psicóloga",
+        description:
+            "Terapia de casal com TCC no consultório do Méier, Rio de Janeiro. Priscila Oliveira, CRP 0584054.",
+        images: [
+            {
+                url: `${siteUrl}/android-chrome-512x512.png`,
+                width: 512,
+                height: 512,
+                alt: "Priscila Oliveira – Psicóloga Clínica",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary",
         title: "Terapia de casal no Méier | Priscila Oliveira Psicóloga",
         description:
             "Terapia de casal com TCC no consultório do Méier, Rio de Janeiro. Priscila Oliveira, CRP 0584054.",
@@ -72,8 +98,8 @@ export default function TerapiaDeCasalMeierPage() {
                     <p className="mt-6 text-lg text-petroleo/80 leading-relaxed">
                         Para casais que querem entender o que está acontecendo entre os dois:
                         quando as conversas viram discussão, quando a distância aumentou, ou
-                        quando vocês querem atravessar juntos uma fase de mudança. Aqui cada
-                        um encontra escuta, com responsabilidade e afeto.
+                        quando vocês querem atravessar juntos uma fase de mudança. Nas sessões,
+                        os dois têm espaço para falar e para ser ouvidos.
                     </p>
                 </div>
             </section>
