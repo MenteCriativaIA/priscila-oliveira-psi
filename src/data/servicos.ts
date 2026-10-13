@@ -40,7 +40,7 @@ export const tccMeier: Servico = {
     subtitulo:
         "Psicoterapia com Terapia Cognitivo-Comportamental (TCC), presencial no Méier e online para todo o Brasil.",
     paraQuem:
-        "Para quem quer entender melhor o que sente e por que age de determinado jeito, e procura uma terapia prática, com conversa e ferramentas para o dia a dia. Atendo adultos, crianças e adolescentes.",
+        "Para quem quer entender melhor o que sente e por que age de determinado jeito, e procura uma terapia prática, com conversa e ferramentas para o dia a dia. Atendo também crianças e adolescentes, no consultório do Méier.",
     comoFunciona:
         "A TCC é uma abordagem focada em entender como nossos pensamentos e comportamentos impactam nossas emoções. Nas sessões, nós vamos identificar juntos os pensamentos e hábitos que estão gerando sofrimento e trabalhar formas novas de lidar com eles.",
     online: true,
@@ -84,7 +84,7 @@ export const terapiaDepressao: Servico = {
     paraQuem:
         "Para quem sente uma tristeza que não passa, perdeu o interesse pelo que gostava ou está sem energia para o dia a dia. Pedir ajuda já é um passo, e a terapia é um espaço para falar disso com cuidado.",
     comoFunciona:
-        "A TCC é uma abordagem prática e estruturada. Nas sessões, nós vamos entender juntos os pensamentos e hábitos que mantêm o desânimo e retomar, aos poucos e no seu ritmo, as atividades do dia a dia.",
+        "A TCC é uma abordagem prática e estruturada. Nas sessões, nós vamos entender juntos os pensamentos e hábitos que mantêm o desânimo e planejar juntos, aos poucos e no seu ritmo, pequenos passos no dia a dia.",
     online: true,
 };
 
