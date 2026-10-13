@@ -89,7 +89,7 @@ export default function TerapiaDeCasalMeierPage() {
             </section>
 
             {/* Para quem é */}
-            <section className="bg-bege-light py-20 px-6">
+            <section id="para-quem-e" className="bg-bege-light py-20 px-6">
                 <div className="mx-auto max-w-4xl">
                     <h2 className="font-serif text-3xl font-bold text-petroleo sm:text-4xl">
                         Para quem é
@@ -105,7 +105,7 @@ export default function TerapiaDeCasalMeierPage() {
             </section>
 
             {/* Como funciona */}
-            <section className="py-20 px-6">
+            <section id="como-funciona" className="py-20 px-6">
                 <div className="mx-auto max-w-4xl">
                     <h2 className="font-serif text-3xl font-bold text-petroleo sm:text-4xl">
                         Como funciona
@@ -144,7 +144,7 @@ export default function TerapiaDeCasalMeierPage() {
             </section>
 
             {/* Onde e como agendar */}
-            <section className="bg-bege-light py-20 px-6">
+            <section id="onde-fica" className="bg-bege-light py-20 px-6">
                 <div className="mx-auto max-w-4xl">
                     <h2 className="font-serif text-3xl font-bold text-petroleo sm:text-4xl">
                         Onde fica o consultório
