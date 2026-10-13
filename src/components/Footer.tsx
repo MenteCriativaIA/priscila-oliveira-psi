@@ -1,11 +1,12 @@
 "use client";
 
+import { formatarCRP } from "@/lib/crp";
 import { Instagram, Linkedin, Mail, MapPin } from "lucide-react";
 import siteContent from "@/data/site-content.json";
 
 export function Footer({ ocultarOnline = false }: { ocultarOnline?: boolean } = {}) {
     const nome = siteContent.nomeCompleto || "[Nome da Psicóloga]";
-    const crp = siteContent.crp || "[CRP XXXXX/XX]";
+    const crp = formatarCRP(siteContent.crp) || "[CRP XXXXX/XX]";
     const email = siteContent.emailProfissional || "[email@exemplo.com]";
     // Páginas só do atendimento presencial (ex.: terapia de casal) escondem a linha do online.
     const enderecoCompleto = siteContent.endereco || "[Endereço do consultório]";

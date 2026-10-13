@@ -1,3 +1,4 @@
+import { formatarCRP } from "@/lib/crp";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, Clock, CreditCard, MapPin, MessagesSquare } from "lucide-react";
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
 
 export default function TerapiaDeCasalMeierPage() {
     const nome = siteContent.nomeCompleto;
-    const crp = siteContent.crp;
+    const crp = formatarCRP(siteContent.crp);
     const duracao = siteContent.investimento.duracaoSessao?.trim() || "50 minutos";
     // Só as linhas do endereço físico: esta página fala do atendimento presencial.
     const endereco = siteContent.endereco
@@ -80,7 +81,7 @@ export default function TerapiaDeCasalMeierPage() {
                         falarem do que está difícil na relação.
                     </p>
                     <p className="mt-4 text-dourado-light text-sm font-medium">
-                        {nome} · Psicóloga Clínica · CRP {crp}
+                        {nome} · Psicóloga Clínica · {crp}
                     </p>
                     <div className="mt-10">
                         <BotaoWhatsApp texto="Falar no WhatsApp" />
@@ -193,7 +194,7 @@ export default function TerapiaDeCasalMeierPage() {
                         <BotaoWhatsApp texto="Agendar pelo WhatsApp" />
                     </div>
                     <p className="mt-6 text-sm text-bege/60">
-                        {nome} · Psicóloga Clínica · CRP {crp}
+                        {nome} · Psicóloga Clínica · {crp}
                     </p>
                 </div>
             </section>

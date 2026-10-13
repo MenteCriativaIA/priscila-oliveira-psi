@@ -1,5 +1,6 @@
 "use client";
 
+import { formatarCRP } from "@/lib/crp";
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import siteContent from "@/data/site-content.json";
@@ -9,7 +10,7 @@ export function SobreMim() {
 
     const data = siteContent.sobreMim;
     const nome = siteContent.nomeCompleto || "[Nome da Psicóloga]";
-    const crp = siteContent.crp || "[CRP XXXXX/XX]";
+    const crp = formatarCRP(siteContent.crp) || "[CRP XXXXX/XX]";
 
     return (
         <section
