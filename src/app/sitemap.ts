@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { artigos } from "@/data/artigos";
 
 const siteUrl = "https://www.priolivepsi.com.br";
 
@@ -46,5 +47,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    ...artigos.map((a) => ({
+      url: `${siteUrl}/blog/${a.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
   ];
 }

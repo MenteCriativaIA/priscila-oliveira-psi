@@ -17,7 +17,7 @@ export interface Servico {
     subtitulo: string;
     paraQuem: string;
     comoFunciona: string;
-    // Online só onde há registro: atende online para todo o Brasil (13/10/2026); casal e infantil ficam presenciais.
+    // Online para todo o Brasil, inclusive crianças e adolescentes (13/10/2026); só casal fica presencial.
     online: boolean;
 }
 

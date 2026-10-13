@@ -17,12 +17,12 @@ export const psicologaInfantilMeier: Servico = {
         "Priscila Oliveira",
     ],
     subtitulo:
-        "Atendimento de crianças e adolescentes com Terapia Cognitivo-Comportamental (TCC), no consultório do Méier.",
+        "Atendimento de crianças e adolescentes com Terapia Cognitivo-Comportamental (TCC), presencial no Méier e online para todo o Brasil.",
     paraQuem:
         "Para crianças e adolescentes que estão passando por um momento difícil, em casa, na escola ou com as próprias emoções, e para famílias que procuram um espaço de escuta e cuidado para eles.",
     comoFunciona:
         "A TCC é uma abordagem prática e estruturada. Nas sessões, a criança ou o adolescente tem espaço para falar do que está sentindo, e nós vamos entender juntos quais pensamentos e comportamentos estão gerando sofrimento, com ferramentas para o dia a dia.",
-    online: false,
+    online: true,
 };
 
 export const tccMeier: Servico = {
@@ -40,7 +40,7 @@ export const tccMeier: Servico = {
     subtitulo:
         "Psicoterapia com Terapia Cognitivo-Comportamental (TCC), presencial no Méier e online para todo o Brasil.",
     paraQuem:
-        "Para quem quer entender melhor o que sente e por que age de determinado jeito, e procura uma terapia prática, com conversa e ferramentas para o dia a dia. Atendo também crianças e adolescentes, no consultório do Méier.",
+        "Para quem quer entender melhor o que sente e por que age de determinado jeito, e procura uma terapia prática, com conversa e ferramentas para o dia a dia. Atendo também crianças e adolescentes.",
     comoFunciona:
         "A TCC é uma abordagem focada em entender como nossos pensamentos e comportamentos impactam nossas emoções. Nas sessões, nós vamos identificar juntos os pensamentos e hábitos que estão gerando sofrimento e trabalhar formas novas de lidar com eles.",
     online: true,

@@ -76,7 +76,26 @@
     }
   ],
   "depoimentos": [],
-  "blogPosts": [],
+  "blogPosts": [
+    {
+      "titulo": "Como funciona a terapia de casal",
+      "resumo": "Como a terapia de casal funciona na prática: o que acontece nas sessões, quando procurar e como começar.",
+      "categoria": "Terapia de casal",
+      "data": "2026-10-13"
+    },
+    {
+      "titulo": "O que é a Terapia Cognitivo-Comportamental (TCC)",
+      "resumo": "O que é a Terapia Cognitivo-Comportamental, explicada sem linguagem acadêmica, e como ela acontece nas sessões.",
+      "categoria": "TCC",
+      "data": "2026-10-13"
+    },
+    {
+      "titulo": "Quando procurar terapia para ansiedade",
+      "resumo": "Sinais de que a ansiedade está ocupando espaço demais no dia a dia e quando vale procurar terapia.",
+      "categoria": "Ansiedade",
+      "data": "2026-10-13"
+    }
+  ],
   "endereco": "Rua Dias da Cruz, 185 - sala 207 - Méier,\nRio de Janeiro - RJ,\nCEP: 20720-010.\n(Referência: Ao lado das Pernambucanas, próximo ao IMPERATOR (Centro Cultural João Nogueira)).\nOpção de atendimento Online disponível.",
   "instagram": "https://www.instagram.com/priolivepsi/?hl=pt-br",
   "linkedin": "https://www.linkedin.com/in/dra-priscila-oliveira-a37a22371/",

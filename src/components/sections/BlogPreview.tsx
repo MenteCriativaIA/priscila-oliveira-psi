@@ -2,7 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Calendar, ArrowRight } from "lucide-react";
+import Link from "next/link";
 import siteContent from "@/data/site-content.json";
+import { artigoPorTitulo } from "@/data/artigos";
 
 interface BlogPost {
     titulo: string;
@@ -48,6 +50,9 @@ export function BlogPreview() {
                             viewport={{ once: true }}
                             className="group relative overflow-hidden rounded-3xl bg-white/80 backdrop-blur-sm border border-bege-dark/20 shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-2"
                         >
+                            {artigoPorTitulo(post.titulo) && (
+                                <Link href={`/blog/${artigoPorTitulo(post.titulo)!.slug}`} className="absolute inset-0 z-10" aria-label={`Ler: ${post.titulo}`} />
+                            )}
                             {/* Category color bar */}
                             <div className="h-2 bg-gradient-to-r from-petroleo to-petroleo-light" />
 
