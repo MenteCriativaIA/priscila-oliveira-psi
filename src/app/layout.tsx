@@ -33,12 +33,16 @@ const lora = Lora({
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
+  // Fonte alternativa do painel: não pré-carrega (só baixa se for a escolhida).
+  preload: false,
   display: "swap",
 });
 
 const merriweather = Merriweather({
   subsets: ["latin"],
   variable: "--font-merriweather",
+  // Fonte alternativa do painel: não pré-carrega (só baixa se for a escolhida).
+  preload: false,
   weight: ["400", "700"],
   display: "swap",
 });
@@ -46,6 +50,8 @@ const merriweather = Merriweather({
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-cormorant",
+  // Fonte alternativa do painel: não pré-carrega (só baixa se for a escolhida).
+  preload: false,
   weight: ["400", "700"],
   display: "swap",
 });
@@ -53,24 +59,32 @@ const cormorant = Cormorant_Garamond({
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
   variable: "--font-eb-garamond",
+  // Fonte alternativa do painel: não pré-carrega (só baixa se for a escolhida).
+  preload: false,
   display: "swap",
 });
 
 const roboto = Roboto({
   subsets: ["latin"],
   variable: "--font-roboto",
+  // Fonte alternativa do painel: não pré-carrega (só baixa se for a escolhida).
+  preload: false,
   display: "swap",
 });
 
 const openSans = Open_Sans({
   subsets: ["latin"],
   variable: "--font-open-sans",
+  // Fonte alternativa do painel: não pré-carrega (só baixa se for a escolhida).
+  preload: false,
   display: "swap",
 });
 
 const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-poppins",
+  // Fonte alternativa do painel: não pré-carrega (só baixa se for a escolhida).
+  preload: false,
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
@@ -78,6 +92,8 @@ const poppins = Poppins({
 const nunito = Nunito({
   subsets: ["latin"],
   variable: "--font-nunito",
+  // Fonte alternativa do painel: não pré-carrega (só baixa se for a escolhida).
+  preload: false,
   display: "swap",
 });
 
