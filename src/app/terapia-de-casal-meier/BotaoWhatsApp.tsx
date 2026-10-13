@@ -17,7 +17,7 @@ export function BotaoWhatsApp({ texto }: { texto: string }) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={registrarCliqueWhatsApp}
-            className="inline-flex items-center gap-2 rounded-full bg-dourado px-8 py-4 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-dourado-dark hover:shadow-xl hover:scale-105"
+            className="inline-flex items-center gap-2 rounded-full bg-dourado px-8 py-4 text-base font-semibold text-petroleo-dark shadow-lg transition-all duration-300 hover:bg-dourado-dark hover:shadow-xl hover:scale-105"
         >
             <MessageCircle className="h-5 w-5" />
             {texto}

@@ -17,7 +17,7 @@ export function QuickExitButton() {
         <button
             onClick={handleExit}
             aria-label="Sair do site agora"
-            className="fixed bottom-24 right-4 z-50 flex items-center gap-2 rounded-full bg-dourado px-4 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:bg-dourado-dark hover:shadow-xl md:hidden"
+            className="fixed bottom-24 right-4 z-50 flex items-center gap-2 rounded-full bg-dourado px-4 py-3 text-sm font-semibold text-petroleo-dark shadow-lg transition-all duration-300 hover:bg-dourado-dark hover:shadow-xl md:hidden"
         >
             <LogOut className="h-4 w-4" />
             <span>Sair</span>
