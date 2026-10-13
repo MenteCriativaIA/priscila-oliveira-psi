@@ -6,6 +6,7 @@ import { EmergencyBanner } from "@/components/EmergencyBanner";
 import { Footer } from "@/components/Footer";
 import siteContent from "@/data/site-content.json";
 import { BotaoWhatsApp } from "./BotaoWhatsApp";
+import { jsonLd, servico } from "@/lib/dados-estruturados";
 
 const siteUrl = "https://www.priolivepsi.com.br";
 
@@ -61,6 +62,19 @@ export default function TerapiaDeCasalMeierPage() {
 
     return (
         <main className="min-h-screen bg-bege">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: jsonLd(
+                        servico(
+                            "terapia-de-casal-meier",
+                            "Terapia de casal no Méier",
+                            "Terapia de casal com Terapia Cognitivo-Comportamental (TCC), atendimento presencial no consultório do Méier, Rio de Janeiro, com a psicóloga Priscila Oliveira. Sessões de 50 minutos.",
+                            false,
+                        ),
+                    ),
+                }}
+            />
             {/* Cabeçalho */}
             <section className="bg-petroleo py-16 px-6 md:py-24">
                 <div className="mx-auto max-w-4xl">

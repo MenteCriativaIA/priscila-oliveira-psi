@@ -26,6 +26,7 @@ import { Footer } from "@/components/Footer";
 import { BotaoWhatsAppServico } from "@/components/BotaoWhatsAppServico";
 import { artigoPorSlug, artigos } from "@/data/artigos";
 import siteContent from "@/data/site-content.json";
+import { artigo, jsonLd } from "@/lib/dados-estruturados";
 
 const siteUrl = "https://www.priolivepsi.com.br";
 
@@ -99,6 +100,7 @@ export default async function ArtigoPage({ params }: { params: Promise<{ slug: s
 
     return (
         <main className="min-h-screen bg-bege">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(artigo(a)) }} />
             <header className="bg-petroleo py-16 px-6 md:py-20">
                 <div className="mx-auto max-w-3xl">
                     <Link href="/#blog" className="inline-flex items-center gap-2 text-bege/80 hover:text-bege-light transition-colors duration-200 mb-8 text-sm">

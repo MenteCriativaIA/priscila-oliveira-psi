@@ -8,46 +8,22 @@ import { BlogPreview } from "@/components/sections/BlogPreview";
 import { EmergencyBanner } from "@/components/EmergencyBanner";
 import { Footer } from "@/components/Footer";
 import siteContent from "@/data/site-content.json";
-import { telefoneWhatsApp } from "@/lib/whatsapp";
+import { consultorio, jsonLd, perguntasFrequentes, pessoa, site } from "@/lib/dados-estruturados";
 
 export default function Home() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "PsychologicalTreatment",
-    name: "Priscila Oliveira Psicóloga Clínica",
-    description:
-      "Psicoterapia com Terapia Cognitivo-Comportamental (TCC), atendimento presencial no Méier, Rio de Janeiro, e online.",
-    url: "https://www.priolivepsi.com.br/",
-    provider: {
-      "@type": "Person",
-      name: siteContent.nomeCompleto,
-      jobTitle: "Psicóloga Clínica",
-      email: siteContent.emailProfissional,
-      telephone: `+${telefoneWhatsApp(siteContent.telefoneWhatsApp)}`,
-      sameAs: [siteContent.instagram, siteContent.linkedin].filter(Boolean),
-    },
-    areaServed: [
-      {
-        "@type": "City",
-        name: "Rio de Janeiro",
-      },
-      {
-        "@type": "Country",
-        name: "Brasil",
-      },
-    ],
-    availableService: [
-      "Psicoterapia presencial",
-      "Psicoterapia online",
-      "Terapia Cognitivo-Comportamental (TCC)",
-    ],
-  };
+  const faq = siteContent.faq as { pergunta: string; resposta: string }[];
+  const dados = jsonLd([
+    site(),
+    consultorio(),
+    pessoa(),
+    ...(faq.length ? [perguntasFrequentes(faq)] : []),
+  ]);
 
   return (
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: dados }}
       />
       <HeroSequence />
       <SobreMim />

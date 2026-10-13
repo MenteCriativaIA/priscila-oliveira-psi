@@ -6,6 +6,7 @@ import { EmergencyBanner } from "@/components/EmergencyBanner";
 import { Footer } from "@/components/Footer";
 import { BotaoWhatsAppServico } from "@/components/BotaoWhatsAppServico";
 import siteContent from "@/data/site-content.json";
+import { jsonLd, servico } from "@/lib/dados-estruturados";
 
 const siteUrl = "https://www.priolivepsi.com.br";
 
@@ -59,6 +60,10 @@ export function PaginaServico({ s }: { s: Servico }) {
 
     return (
         <main className="min-h-screen bg-bege">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: jsonLd(servico(s.caminho, s.titulo, s.descricao, s.online)) }}
+            />
             {/* Cabeçalho */}
             <section className="bg-petroleo py-16 px-6 md:py-24">
                 <div className="mx-auto max-w-4xl">
