@@ -37,7 +37,40 @@
     "titulo": "",
     "texto": ""
   },
-  "faq": [],
+  "faq": [
+    {
+      "pergunta": "Quanto tempo dura a sessão?",
+      "resposta": "Cada sessão tem 50 minutos."
+    },
+    {
+      "pergunta": "O atendimento é presencial ou online?",
+      "resposta": "Os dois. Atendo presencialmente no meu consultório no Méier e também online."
+    },
+    {
+      "pergunta": "Onde fica o consultório?",
+      "resposta": "Na Rua Dias da Cruz, 185, sala 207, no Méier, Rio de Janeiro. Fica ao lado das Pernambucanas, perto do Imperator."
+    },
+    {
+      "pergunta": "Qual é a sua abordagem?",
+      "resposta": "Trabalho com a Terapia Cognitivo-Comportamental (TCC), uma abordagem focada em entender como nossos pensamentos e comportamentos impactam nossas emoções."
+    },
+    {
+      "pergunta": "Você atende por plano de saúde?",
+      "resposta": "O atendimento é particular. Emito recibo para você pedir reembolso ao seu plano de saúde."
+    },
+    {
+      "pergunta": "Quais são as formas de pagamento?",
+      "resposta": "PIX, cartão ou transferência."
+    },
+    {
+      "pergunta": "Qual é o valor da sessão?",
+      "resposta": "O valor é sob consulta. Na conversa pelo WhatsApp eu explico como funciona o acompanhamento."
+    },
+    {
+      "pergunta": "Você atende casal, criança e adolescente?",
+      "resposta": "Sim. Atendo terapia de casal no consultório no Méier, e também crianças e adolescentes."
+    }
+  ],
   "depoimentos": [],
   "blogPosts": [],
   "endereco": "Rua Dias da Cruz, 185 - sala 207 - Méier,\nRio de Janeiro - RJ,\nCEP: 20720-010.\n(Referência: Ao lado das Pernambucanas, próximo ao IMPERATOR (Centro Cultural João Nogueira)).\nOpção de atendimento Online disponível.",
