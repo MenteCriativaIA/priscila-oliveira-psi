@@ -36,7 +36,7 @@ export function GET() {
 ## Como funciona
 
 - Sessões de 50 minutos, presenciais ou online.
-- Valor sob consulta, informado na conversa pelo WhatsApp.
+- Valor sob consulta, explicado numa conversa de 10 minutos por chamada, marcada pelo WhatsApp.
 - Pagamento por PIX, cartão ou transferência.
 - Não atende por convênio: emite recibo para reembolso do plano de saúde.
 - Contato e agendamento pelo WhatsApp +${siteContent.telefoneWhatsApp} ou pelo e-mail ${siteContent.emailProfissional}.
