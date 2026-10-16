@@ -2,7 +2,7 @@
 // LISTA_EMAIL_ENDPOINT, lida só no servidor.
 //
 // Os três pontos abaixo entram na Política de Privacidade e comprometem a Priscila: são decisão
-// dela (pergunta GADS-L8-Q2). Enquanto algum estiver vazio, a lista fica desligada mesmo com a
+// dela (perguntas GADS-L8-Q2, Q3 e Q4). Enquanto algum estiver vazio, a lista fica desligada mesmo com a
 // variável: a caixa não aparece e a seção não entra na Política.
 export const POLITICA_LISTA: { frequencia: string; acesso: string; prazo: string } = {
     // De quanto em quanto tempo ela manda mensagem. Ex. de formato: "no máximo uma vez por mês".

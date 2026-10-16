@@ -37,7 +37,7 @@ export function CaixaLista({ pagina }: { pagina: string }) {
         return (
             <div id="lista" className="rounded-3xl border border-dourado/40 bg-white/80 p-8 text-petroleo">
                 <p className="font-serif text-2xl font-bold">Inscrição feita.</p>
-                <p className="mt-2 text-petroleo/80">Quando eu publicar um texto novo no blog, envio para você. Para sair da lista, é só responder pedindo.</p>
+                <p className="mt-2 text-petroleo/80">Você vai receber os próximos textos do blog. Para sair da lista, é só responder qualquer mensagem pedindo.</p>
             </div>
         );
     }
@@ -52,7 +52,7 @@ export function CaixaLista({ pagina }: { pagina: string }) {
                 </span>
                 <div>
                     <h2 className="font-serif text-2xl font-bold text-petroleo">Receba os próximos textos do blog</h2>
-                    <p className="mt-1 text-petroleo/80">Quando eu publicar um texto novo, envio para você. Você sai da lista quando quiser.</p>
+                    <p className="mt-1 text-petroleo/80">Deixe seu e-mail para receber os próximos textos do blog. Você sai da lista quando quiser.</p>
                 </div>
             </div>
 
