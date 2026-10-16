@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { listaAtiva } from "@/lib/lista";
 
 // Recebe a inscrição da caixa "Receba os próximos textos do blog" e repassa para a planilha
 // Google da Priscila (Apps Script). O endereço fica só no servidor (LISTA_EMAIL_ENDPOINT).
@@ -9,8 +10,9 @@ function texto(v: unknown, max: number): string {
 }
 
 export async function POST(req: Request) {
+    // Mesma regra da caixa: sem o endereço ou sem as três decisões da Priscila, não grava.
     const endpoint = process.env.LISTA_EMAIL_ENDPOINT;
-    if (!endpoint) {
+    if (!endpoint || !listaAtiva()) {
         return NextResponse.json({ ok: false, erro: "indisponivel" }, { status: 503 });
     }
 
