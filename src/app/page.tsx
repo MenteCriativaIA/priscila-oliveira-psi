@@ -7,6 +7,8 @@ import { Depoimentos } from "@/components/sections/Depoimentos";
 import { BlogPreview } from "@/components/sections/BlogPreview";
 import { EmergencyBanner } from "@/components/EmergencyBanner";
 import { Footer } from "@/components/Footer";
+import { CaixaLista } from "@/components/CaixaLista";
+import { listaAtiva } from "@/lib/lista";
 import siteContent from "@/data/site-content.json";
 import { consultorio, jsonLd, perguntasFrequentes, pessoa, site } from "@/lib/dados-estruturados";
 
@@ -32,6 +34,13 @@ export default function Home() {
       <FAQ />
       <Depoimentos />
       <BlogPreview />
+      {listaAtiva() && (
+        <section className="bg-bege-light px-6 pb-24">
+          <div className="mx-auto max-w-3xl">
+            <CaixaLista pagina="/" />
+          </div>
+        </section>
+      )}
       <EmergencyBanner />
       <Footer />
     </main>

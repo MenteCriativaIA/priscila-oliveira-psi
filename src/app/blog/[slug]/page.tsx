@@ -24,6 +24,8 @@ import {
 import { EmergencyBanner } from "@/components/EmergencyBanner";
 import { Footer } from "@/components/Footer";
 import { BotaoWhatsAppServico } from "@/components/BotaoWhatsAppServico";
+import { CaixaLista } from "@/components/CaixaLista";
+import { listaAtiva } from "@/lib/lista";
 import { artigoPorSlug, artigos } from "@/data/artigos";
 import siteContent from "@/data/site-content.json";
 import { artigo, jsonLd } from "@/lib/dados-estruturados";
@@ -194,6 +196,8 @@ export default async function ArtigoPage({ params }: { params: Promise<{ slug: s
                             </div>
                         </div>
                     )}
+
+                    {listaAtiva() && <CaixaLista pagina={`/blog/${a.slug}`} />}
 
                     <p className="border-t border-bege-dark/30 pt-4 text-sm text-petroleo/75">
                         <strong className="text-petroleo">{nome}</strong> · Psicóloga Clínica · {crp}
