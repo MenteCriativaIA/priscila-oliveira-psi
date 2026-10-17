@@ -2,15 +2,15 @@
 // LISTA_EMAIL_ENDPOINT, lida só no servidor.
 //
 // Os três pontos abaixo entram na Política de Privacidade e comprometem a Priscila: são decisão
-// dela (perguntas GADS-L8-Q2, Q3 e Q4). Enquanto algum estiver vazio, a lista fica desligada mesmo com a
+// dela (GADS-L8-Q2, Q3 e Q4 = A, respondidas em 17/10/2026). Enquanto algum estiver vazio, a lista fica desligada mesmo com a
 // variável: a caixa não aparece e a seção não entra na Política.
 export const POLITICA_LISTA: { frequencia: string; acesso: string; prazo: string } = {
     // De quanto em quanto tempo ela manda mensagem. Ex. de formato: "no máximo uma vez por mês".
-    frequencia: "",
+    frequencia: "no máximo uma vez por mês",
     // Quem tem acesso à planilha. Ex. de formato: "somente a psicóloga responsável".
-    acesso: "",
+    acesso: "somente a psicóloga responsável",
     // Por quanto tempo os dados ficam guardados. Ex. de formato: "enquanto você estiver inscrito(a); ao sair, são apagados em até 15 dias".
-    prazo: "",
+    prazo: "enquanto você estiver inscrito(a); ao pedir para sair, seus dados são apagados em até 15 dias",
 };
 
 export function politicaListaCompleta(): boolean {
