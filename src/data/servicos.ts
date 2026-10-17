@@ -8,7 +8,7 @@ export const psicologaInfantilMeier: Servico = {
     caminho: "psicologa-infantil-meier",
     titulo: "Psicóloga infantil no Méier",
     descricao:
-        "Psicóloga infantil no Méier, Rio de Janeiro: atendimento de crianças e adolescentes com Terapia Cognitivo-Comportamental (TCC), com Priscila Oliveira (CRP 05/84054).",
+        "Psicóloga infantil no Méier, Rio de Janeiro: atendimento de crianças e adolescentes com Terapia Cognitivo-Comportamental (TCC), com Priscila Oliveira de Freitas (CRP 05/84054).",
     palavras: [
         "psicóloga infantil Méier",
         "psicólogo infantil Méier",
@@ -29,7 +29,7 @@ export const tccMeier: Servico = {
     caminho: "terapia-cognitivo-comportamental-meier",
     titulo: "Terapia Cognitivo-Comportamental (TCC) no Méier",
     descricao:
-        "Terapia Cognitivo-Comportamental (TCC) no Méier, Rio de Janeiro, e online para todo o Brasil, com a psicóloga Priscila Oliveira (CRP 05/84054). Sessões de 50 minutos.",
+        "Terapia Cognitivo-Comportamental (TCC) no Méier, Rio de Janeiro, e online para todo o Brasil, com a psicóloga Priscila Oliveira de Freitas (CRP 05/84054). Sessões de 50 minutos.",
     palavras: [
         "TCC Méier",
         "psicóloga TCC Méier",
@@ -50,7 +50,7 @@ export const terapiaAnsiedade: Servico = {
     caminho: "terapia-para-ansiedade",
     titulo: "Terapia para ansiedade",
     descricao:
-        "Terapia para ansiedade com Terapia Cognitivo-Comportamental (TCC), presencial no Méier, Rio de Janeiro, e online para todo o Brasil. Psicóloga Priscila Oliveira (CRP 05/84054).",
+        "Terapia para ansiedade com Terapia Cognitivo-Comportamental (TCC), presencial no Méier, Rio de Janeiro, e online para todo o Brasil. Psicóloga Priscila Oliveira de Freitas (CRP 05/84054).",
     palavras: [
         "terapia para ansiedade",
         "psicóloga para ansiedade Méier",
@@ -71,7 +71,7 @@ export const terapiaDepressao: Servico = {
     caminho: "terapia-para-depressao",
     titulo: "Terapia para depressão",
     descricao:
-        "Terapia para depressão e tristeza persistente com Terapia Cognitivo-Comportamental (TCC), presencial no Méier, Rio de Janeiro, e online para todo o Brasil. Psicóloga Priscila Oliveira (CRP 05/84054).",
+        "Terapia para depressão e tristeza persistente com Terapia Cognitivo-Comportamental (TCC), presencial no Méier, Rio de Janeiro, e online para todo o Brasil. Psicóloga Priscila Oliveira de Freitas (CRP 05/84054).",
     palavras: [
         "terapia para depressão",
         "psicóloga para depressão Méier",

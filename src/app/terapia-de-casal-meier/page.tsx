@@ -13,7 +13,7 @@ const siteUrl = "https://www.priolivepsi.com.br";
 export const metadata: Metadata = {
     title: { absolute: "Terapia de casal no Méier" },
     description:
-        "Terapia de casal no Méier, Rio de Janeiro, com a psicóloga Priscila Oliveira (CRP 05/84054). Atendimento presencial com Terapia Cognitivo-Comportamental (TCC), sessões de 50 minutos.",
+        "Terapia de casal no Méier, Rio de Janeiro, com a psicóloga Priscila Oliveira de Freitas (CRP 05/84054). Atendimento presencial com Terapia Cognitivo-Comportamental (TCC), sessões de 50 minutos.",
     alternates: {
         canonical: `${siteUrl}/terapia-de-casal-meier`,
     },
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
         url: `${siteUrl}/terapia-de-casal-meier`,
         title: "Terapia de casal no Méier | Priscila Oliveira Psicóloga",
         description:
-            "Terapia de casal com TCC no consultório do Méier, Rio de Janeiro. Priscila Oliveira, CRP 05/84054.",
+            "Terapia de casal com TCC no consultório do Méier, Rio de Janeiro. Priscila Oliveira de Freitas, CRP 05/84054.",
         images: [
             {
                 url: `${siteUrl}/android-chrome-512x512.png`,
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
         card: "summary",
         title: "Terapia de casal no Méier | Priscila Oliveira Psicóloga",
         description:
-            "Terapia de casal com TCC no consultório do Méier, Rio de Janeiro. Priscila Oliveira, CRP 05/84054.",
+            "Terapia de casal com TCC no consultório do Méier, Rio de Janeiro. Priscila Oliveira de Freitas, CRP 05/84054.",
     },
 };
 
