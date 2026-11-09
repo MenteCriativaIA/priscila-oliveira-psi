@@ -10,6 +10,8 @@ export interface Artigo {
     categoria: string;
     resumo: string;
     data: string;
+    /** Data da última revisão do texto (aaaa-mm-dd). Sem ela, vale a data de publicação. Alimenta o sitemap e o dateModified. */
+    atualizado?: string;
     destaque: string;
     online: boolean;
     abertura: string[];

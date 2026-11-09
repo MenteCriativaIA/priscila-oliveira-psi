@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "conferir:seo": "node scripts/conferir-seo.mjs",
+    "avisar:indexnow": "node scripts/avisar-indexnow.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

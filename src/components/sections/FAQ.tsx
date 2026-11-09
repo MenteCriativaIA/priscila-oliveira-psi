@@ -53,7 +53,8 @@ export function FAQ() {
                                 <AccordionTrigger className="py-5 text-left font-serif text-lg font-semibold text-petroleo hover:text-petroleo-light hover:no-underline [&[data-state=open]]:text-dourado-dark">
                                     {item.pergunta}
                                 </AccordionTrigger>
-                                <AccordionContent className="pb-5 text-petroleo/75 leading-relaxed text-base">
+                                {/* forceMount: a resposta fica escrita no HTML mesmo fechada (oculta), como a marcação FAQPage diz. */}
+                                <AccordionContent forceMount className="pb-5 text-petroleo/75 leading-relaxed text-base">
                                     {item.resposta}
                                 </AccordionContent>
                             </AccordionItem>

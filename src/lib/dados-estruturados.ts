@@ -170,7 +170,7 @@ export function artigo(a: Artigo) {
             description: a.resumo,
             articleSection: a.categoria,
             datePublished: a.data,
-            dateModified: a.data,
+            dateModified: a.atualizado ?? a.data,
             inLanguage: "pt-BR",
             url,
             mainEntityOfPage: url,

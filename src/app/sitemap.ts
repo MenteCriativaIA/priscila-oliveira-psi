@@ -1,57 +1,23 @@
 import type { MetadataRoute } from "next";
 import { artigos } from "@/data/artigos";
+import { datasPaginas } from "@/data/datas-paginas";
 
 const siteUrl = "https://www.priolivepsi.com.br";
 
+// Só endereço e data real da última mudança: o Google ignora changefreq e priority.
+// Cada endereço tem de ser igual ao canonical da própria página.
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    {
-      url: siteUrl,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-    {
-      url: `${siteUrl}/terapia-de-casal-meier`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/psicologa-infantil-meier`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/terapia-cognitivo-comportamental-meier`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/terapia-para-ansiedade`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/terapia-para-depressao`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/politica-de-privacidade`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
+    { url: siteUrl, lastModified: datasPaginas.inicio },
+    { url: `${siteUrl}/terapia-de-casal-meier`, lastModified: datasPaginas.terapiaDeCasal },
+    { url: `${siteUrl}/psicologa-infantil-meier`, lastModified: datasPaginas.servicos },
+    { url: `${siteUrl}/terapia-cognitivo-comportamental-meier`, lastModified: datasPaginas.servicos },
+    { url: `${siteUrl}/terapia-para-ansiedade`, lastModified: datasPaginas.servicos },
+    { url: `${siteUrl}/terapia-para-depressao`, lastModified: datasPaginas.servicos },
+    { url: `${siteUrl}/politica-de-privacidade`, lastModified: datasPaginas.privacidade },
     ...artigos.map((a) => ({
       url: `${siteUrl}/blog/${a.slug}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
+      lastModified: a.atualizado ?? a.data,
     })),
   ];
 }
