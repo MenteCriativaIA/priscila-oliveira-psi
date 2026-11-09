@@ -74,9 +74,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             url,
             title: `${a.titulo} | Priscila Oliveira Psicóloga`,
             description: a.resumo,
-            images: [{ url: `${siteUrl}/android-chrome-512x512.png`, width: 512, height: 512, alt: "Priscila Oliveira – Psicóloga Clínica" }],
+            images: [{ url: `${siteUrl}/og-priscila.png`, width: 1200, height: 630, alt: "Priscila Oliveira – Psicóloga Clínica" }],
         },
-        twitter: { card: "summary", title: `${a.titulo} | Priscila Oliveira Psicóloga`, description: a.resumo },
+        twitter: { card: "summary_large_image", title: `${a.titulo} | Priscila Oliveira Psicóloga`, description: a.resumo, images: [`${siteUrl}/og-priscila.png`] },
     };
 }
 

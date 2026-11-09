@@ -19,3 +19,7 @@ Custo: a animação de fechar não roda (some na hora); a de abrir segue igual.
 
 ## 09/11/2026 — Chave do IndexNow é o arquivo `public/<32 caracteres>.txt`
 Não apagar nem trocar sem rodar `npm run avisar:indexnow` de novo. O programa descobre a chave pelo nome do arquivo.
+
+## 09/11/2026 — Imagem de prévia única `public/og-priscila.png` (1200x630), sem foto
+Fundo petróleo, nome com "de Freitas", CRP, TCC, Méier e online. Sem foto de pessoa: foto é decisão da Priscila. Vale para home, serviços, casal e artigos (twitter:card `summary_large_image`). Uma imagem por tipo de página fica para depois.
+Os campos `image` e `logo` do JSON-LD continuam com o ícone 512x512 (logo quadrado).

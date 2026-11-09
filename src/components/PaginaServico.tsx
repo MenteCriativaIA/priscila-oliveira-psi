@@ -39,14 +39,14 @@ export function metadadosServico(s: Servico): Metadata {
             description: s.descricao,
             images: [
                 {
-                    url: `${siteUrl}/android-chrome-512x512.png`,
-                    width: 512,
-                    height: 512,
+                    url: `${siteUrl}/og-priscila.png`,
+                    width: 1200,
+                    height: 630,
                     alt: "Priscila Oliveira – Psicóloga Clínica",
                 },
             ],
         },
-        twitter: { card: "summary", title: titulo, description: s.descricao },
+        twitter: { card: "summary_large_image", title: titulo, description: s.descricao, images: [`${siteUrl}/og-priscila.png`] },
     };
 }
 

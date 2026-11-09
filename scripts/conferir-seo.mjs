@@ -53,6 +53,8 @@ for (const { loc, lastmod } of entradas) {
     const canonical = r.texto.match(/<link[^>]*rel="canonical"[^>]*href="([^"]*)"/i)?.[1];
     if (!canonical) falha(`${nome}: sem canonical`);
     else if (canonical.replace(/\/$/, "") !== loc.replace(/\/$/, "")) falha(`${nome}: canonical ${canonical} difere do endereço do mapa ${loc}`);
+    const ogLargura = r.texto.match(/<meta[^>]*property="og:image:width"[^>]*content="([^"]*)"/i)?.[1];
+    if (ogLargura !== "1200") falha(`${nome}: og:image com largura ${ogLargura ?? "ausente"} (esperado 1200, imagem de prévia 1200x630)`);
     if (/noindex/i.test(meta(r.texto, "robots") ?? "") || /noindex/i.test(r.headers.get("x-robots-tag") ?? "")) falha(`${nome}: está no mapa mas tem noindex`);
 
     const visivel = textoDe(r.texto);

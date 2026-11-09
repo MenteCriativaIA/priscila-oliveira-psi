@@ -36,18 +36,19 @@ export const metadata: Metadata = {
             "Terapia de casal com TCC no consultório do Méier, Rio de Janeiro. Priscila Oliveira de Freitas, CRP 05/84054.",
         images: [
             {
-                url: `${siteUrl}/android-chrome-512x512.png`,
-                width: 512,
-                height: 512,
+                url: `${siteUrl}/og-priscila.png`,
+                width: 1200,
+                height: 630,
                 alt: "Priscila Oliveira – Psicóloga Clínica",
             },
         ],
     },
     twitter: {
-        card: "summary",
+        card: "summary_large_image",
         title: "Terapia de casal no Méier | Priscila Oliveira Psicóloga",
         description:
             "Terapia de casal com TCC no consultório do Méier, Rio de Janeiro. Priscila Oliveira de Freitas, CRP 05/84054.",
+        images: [`${siteUrl}/og-priscila.png`],
     },
 };
 

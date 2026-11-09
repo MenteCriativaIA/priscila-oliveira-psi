@@ -182,19 +182,19 @@ export const metadata: Metadata = {
       "Psicoterapia com Terapia Cognitivo-Comportamental (TCC), atendimento presencial no Méier, Rio de Janeiro, e online.",
     images: [
       {
-        url: `${siteUrl}/android-chrome-512x512.png`,
-        width: 512,
-        height: 512,
+        url: `${siteUrl}/og-priscila.png`,
+        width: 1200,
+        height: 630,
         alt: "Priscila Oliveira – Psicóloga Clínica",
       },
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Priscila Oliveira | Psicóloga no Méier e Online",
     description:
       "Psicoterapia com TCC para ansiedade, autoestima, relacionamentos e depressão. Atendimento no Méier e online.",
-    images: [`${siteUrl}/android-chrome-512x512.png`],
+    images: [`${siteUrl}/og-priscila.png`],
   },
   robots: {
     index: true,
