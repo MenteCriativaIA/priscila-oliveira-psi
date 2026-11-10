@@ -27,3 +27,9 @@ Os campos `image` e `logo` do JSON-LD continuam com o ícone 512x512 (logo quadr
 ## 09/11/2026 — Título e descrição do Google ficam separados do H1 (`tituloBusca`, `src/data/seo-artigos.ts`)
 Aprovados pelo Leandro em 09/11/2026 (T1 a T9, "Tudo A"). Serviços: campo `tituloBusca` em `src/data/servicos.ts`; artigos: `src/data/seo-artigos.ts` (artigos.ts é gerado por programa e seria sobrescrito). O H1 da página não mudou.
 `conferir-seo` barra título com mais de 60 caracteres e descrição com mais de 155.
+
+## 09/11/2026 — llms.txt e /fatos montados de uma fonte só (`src/lib/fatos.ts`)
+Aprovados pelo Leandro em 09/11/2026 ("Tudo A": LLM1, FAT1, CONF1 a CONF3). As 10 perguntas de `fatos.ts` aparecem na tela da `/fatos` (lista `dl`, sempre escrita no HTML), no FAQPage do JSON-LD e na seção "Fatos para citar" do `llms.txt`: mudou o texto num lugar, muda nos três.
+O `llms.txt` lê `datasPaginas.llms` para o "Atualizado em": ao mexer no `llms.txt` ou em `fatos.ts`, atualizar `llms` e `fatos` em `src/data/datas-paginas.ts` e `fatosConferidoEm` em `fatos.ts`.
+Fonte de cada frase: `marketing/visibilidade-ia/llms-txt-FONTES.md` (projeto Priscila). Frase sem fonte sai.
+Horário do consultório publicado vem do perfil do Google Maps (lido em 10/10/2026); se mudar lá, mudar em `dados-estruturados.ts` (`horario`).

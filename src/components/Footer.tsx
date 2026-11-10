@@ -90,6 +90,12 @@ export function Footer({ ocultarOnline = false }: { ocultarOnline?: boolean } = 
                             )}
                         </div>
                         <a
+                            href="/fatos"
+                            className="text-sm text-bege/50 underline underline-offset-2 hover:text-bege/80 transition-colors duration-200"
+                        >
+                            Fatos sobre a psicóloga
+                        </a>
+                        <a
                             href={politica}
                             className="text-sm text-bege/50 underline underline-offset-2 hover:text-bege/80 transition-colors duration-200"
                         >

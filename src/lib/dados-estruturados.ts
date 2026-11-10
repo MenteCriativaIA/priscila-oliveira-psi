@@ -43,7 +43,7 @@ export function pessoa() {
 }
 
 // Horário do perfil do Google Maps, lido em 10/10/2026 (marketing/negocio.md).
-const horario: [string, string, string][] = [
+export const horario: [string, string, string][] = [
     ["Monday", "07:00", "19:00"],
     ["Tuesday", "18:00", "22:00"],
     ["Wednesday", "19:00", "22:00"],
@@ -110,10 +110,10 @@ export function site() {
     };
 }
 
-export function perguntasFrequentes(itens: { pergunta: string; resposta: string }[]) {
+export function perguntasFrequentes(itens: { pergunta: string; resposta: string }[], id = `${siteUrl}/#faq`) {
     return {
         "@type": "FAQPage",
-        "@id": `${siteUrl}/#faq`,
+        "@id": id,
         mainEntity: itens.map((i) => ({
             "@type": "Question",
             name: i.pergunta,
@@ -190,3 +190,31 @@ export function artigo(a: Artigo) {
 export function jsonLd(nos: object[]) {
     return JSON.stringify({ "@context": "https://schema.org", "@graph": nos }).replace(/</g, "\\u003c");
 }
+
+// Página de fatos (/fatos): WebPage sobre a pessoa, com a data da última conferência, trilha e as mesmas perguntas da tela.
+export function paginaDeFatos(titulo: string, descricao: string, dataConferida: string, itens: { pergunta: string; resposta: string }[]) {
+    const url = `${siteUrl}/fatos`;
+    return [
+        {
+            "@type": "WebPage",
+            "@id": `${url}#pagina`,
+            url,
+            name: titulo,
+            description: descricao,
+            inLanguage: "pt-BR",
+            dateModified: dataConferida,
+            lastReviewed: dataConferida,
+            about: { "@id": idPriscila },
+            isPartOf: { "@id": idSite },
+            mainEntity: { "@id": `${url}#perguntas` },
+        },
+        perguntasFrequentes(itens, `${url}#perguntas`),
+        trilha([
+            ["Início", siteUrl],
+            ["Fatos", url],
+        ]),
+        pessoa(),
+        consultorio(),
+    ];
+}
+

@@ -7,4 +7,6 @@ export const datasPaginas = {
     terapiaDeCasal: "2026-11-09",
     servicos: "2026-11-09", // psicóloga infantil, TCC, ansiedade e depressão (mesmo arquivo de dados)
     privacidade: "2026-11-09",
+    fatos: "2026-11-09",
+    llms: "2026-11-09", // data do "Atualizado em" do llms.txt
 } as const;

@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/terapia-cognitivo-comportamental-meier`, lastModified: datasPaginas.servicos },
     { url: `${siteUrl}/terapia-para-ansiedade`, lastModified: datasPaginas.servicos },
     { url: `${siteUrl}/terapia-para-depressao`, lastModified: datasPaginas.servicos },
+    { url: `${siteUrl}/fatos`, lastModified: datasPaginas.fatos },
     { url: `${siteUrl}/politica-de-privacidade`, lastModified: datasPaginas.privacidade },
     ...artigos.map((a) => ({
       url: `${siteUrl}/blog/${a.slug}`,
