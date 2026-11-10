@@ -13,6 +13,8 @@ const siteUrl = "https://www.priolivepsi.com.br";
 export interface Servico {
     caminho: string;
     titulo: string;
+    /** Título do Google e da aba (até ~60 caracteres). O H1 da página continua `titulo`. */
+    tituloBusca?: string;
     descricao: string;
     palavras: string[];
     subtitulo: string;
@@ -24,9 +26,9 @@ export interface Servico {
 
 export function metadadosServico(s: Servico): Metadata {
     const url = `${siteUrl}/${s.caminho}`;
-    const titulo = `${s.titulo} | Priscila Oliveira Psicóloga`;
+    const titulo = s.tituloBusca ?? `${s.titulo} | Priscila Oliveira Psicóloga`;
     return {
-        title: { absolute: s.titulo },
+        title: { absolute: s.tituloBusca ?? s.titulo },
         description: s.descricao,
         alternates: { canonical: url },
         keywords: s.palavras,

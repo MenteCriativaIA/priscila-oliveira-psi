@@ -27,6 +27,7 @@ import { BotaoWhatsAppServico } from "@/components/BotaoWhatsAppServico";
 import { CaixaLista } from "@/components/CaixaLista";
 import { listaAtiva } from "@/lib/lista";
 import { artigoPorSlug, artigos } from "@/data/artigos";
+import { seoArtigos } from "@/data/seo-artigos";
 import siteContent from "@/data/site-content.json";
 import { artigo, jsonLd } from "@/lib/dados-estruturados";
 
@@ -63,20 +64,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const a = artigoPorSlug(slug);
     if (!a) return {};
     const url = `${siteUrl}/blog/${a.slug}`;
+    const seo = seoArtigos[a.slug];
+    const tituloSeo = seo?.titulo ?? a.titulo;
+    const descricaoSeo = seo?.descricao ?? a.resumo;
     return {
-        title: { absolute: a.titulo },
-        description: a.resumo,
+        title: { absolute: tituloSeo },
+        description: descricaoSeo,
         alternates: { canonical: url },
         openGraph: {
             type: "article",
             locale: "pt_BR",
             siteName: "Priscila Oliveira Psicóloga",
             url,
-            title: `${a.titulo} | Priscila Oliveira Psicóloga`,
-            description: a.resumo,
+            title: tituloSeo,
+            description: descricaoSeo,
             images: [{ url: `${siteUrl}/og-priscila.png`, width: 1200, height: 630, alt: "Priscila Oliveira – Psicóloga Clínica" }],
         },
-        twitter: { card: "summary_large_image", title: `${a.titulo} | Priscila Oliveira Psicóloga`, description: a.resumo, images: [`${siteUrl}/og-priscila.png`] },
+        twitter: { card: "summary_large_image", title: tituloSeo, description: descricaoSeo, images: [`${siteUrl}/og-priscila.png`] },
     };
 }
 

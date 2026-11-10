@@ -49,7 +49,9 @@ for (const { loc, lastmod } of entradas) {
     if (palavras < 150) falha(`${nome}: só ${palavras} palavras no HTML bruto (esperado 150 ou mais)`);
     const titulo = r.texto.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1];
     if (!titulo) falha(`${nome}: sem title`);
+    else if (entidades(titulo).length > 60) falha(`${nome}: title com ${entidades(titulo).length} caracteres (o Google mostra cerca de 60)`);
     if (!meta(r.texto, "description")) falha(`${nome}: sem description`);
+    else if (meta(r.texto, "description").length > 155) falha(`${nome}: description com ${meta(r.texto, "description").length} caracteres (o Google mostra cerca de 155)`);
     const canonical = r.texto.match(/<link[^>]*rel="canonical"[^>]*href="([^"]*)"/i)?.[1];
     if (!canonical) falha(`${nome}: sem canonical`);
     else if (canonical.replace(/\/$/, "") !== loc.replace(/\/$/, "")) falha(`${nome}: canonical ${canonical} difere do endereço do mapa ${loc}`);

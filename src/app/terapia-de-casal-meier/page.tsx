@@ -11,9 +11,9 @@ import { jsonLd, servico } from "@/lib/dados-estruturados";
 const siteUrl = "https://www.priolivepsi.com.br";
 
 export const metadata: Metadata = {
-    title: { absolute: "Terapia de casal no Méier" },
+    title: { absolute: "Terapia de Casal no Méier | Priscila Oliveira" },
     description:
-        "Terapia de casal no Méier, Rio de Janeiro, com a psicóloga Priscila Oliveira de Freitas (CRP 05/84054). Atendimento presencial com Terapia Cognitivo-Comportamental (TCC), sessões de 50 minutos.",
+        "Terapia de casal presencial no Méier, Rio de Janeiro, com TCC. Psicóloga Priscila Oliveira de Freitas, CRP 05/84054. Sessões de 50 minutos.",
     alternates: {
         canonical: `${siteUrl}/terapia-de-casal-meier`,
     },

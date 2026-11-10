@@ -3,8 +3,8 @@
 // ignorar o campo quando todas as páginas dizem a mesma data (foi o que aconteceu até 09/11/2026, tudo 2026-10-18).
 // Datas iniciais tiradas do último commit que tocou cada grupo de arquivos (git log, 09/11/2026).
 export const datasPaginas = {
-    inicio: "2026-10-17",
-    terapiaDeCasal: "2026-10-17",
-    servicos: "2026-10-17", // psicóloga infantil, TCC, ansiedade e depressão (mesmo arquivo de dados)
-    privacidade: "2026-10-17",
+    inicio: "2026-11-09",
+    terapiaDeCasal: "2026-11-09",
+    servicos: "2026-11-09", // psicóloga infantil, TCC, ansiedade e depressão (mesmo arquivo de dados)
+    privacidade: "2026-11-09",
 } as const;

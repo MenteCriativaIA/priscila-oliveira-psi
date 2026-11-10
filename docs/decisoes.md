@@ -23,3 +23,7 @@ Não apagar nem trocar sem rodar `npm run avisar:indexnow` de novo. O programa d
 ## 09/11/2026 — Imagem de prévia única `public/og-priscila.png` (1200x630), sem foto
 Fundo petróleo, nome com "de Freitas", CRP, TCC, Méier e online. Sem foto de pessoa: foto é decisão da Priscila. Vale para home, serviços, casal e artigos (twitter:card `summary_large_image`). Uma imagem por tipo de página fica para depois.
 Os campos `image` e `logo` do JSON-LD continuam com o ícone 512x512 (logo quadrado).
+
+## 09/11/2026 — Título e descrição do Google ficam separados do H1 (`tituloBusca`, `src/data/seo-artigos.ts`)
+Aprovados pelo Leandro em 09/11/2026 (T1 a T9, "Tudo A"). Serviços: campo `tituloBusca` em `src/data/servicos.ts`; artigos: `src/data/seo-artigos.ts` (artigos.ts é gerado por programa e seria sobrescrito). O H1 da página não mudou.
+`conferir-seo` barra título com mais de 60 caracteres e descrição com mais de 155.

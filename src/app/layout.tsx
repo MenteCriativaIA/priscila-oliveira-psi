@@ -139,11 +139,11 @@ const siteUrl = "https://www.priolivepsi.com.br";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Priscila Oliveira | Psicóloga no Méier e Online",
+    default: "Psicóloga no Méier e Online | Priscila Oliveira CRP 05/84054",
     template: "%s | Priscila Oliveira Psicóloga",
   },
   description:
-    "Psicóloga clínica no Méier, Rio de Janeiro, com atendimento online e presencial. Psicoterapia com Terapia Cognitivo-Comportamental (TCC) para ansiedade, autoestima, relacionamentos e depressão.",
+    "Psicóloga clínica no Méier, Rio de Janeiro, e online. Terapia Cognitivo-Comportamental (TCC) com Priscila Oliveira de Freitas, CRP 05/84054.",
   keywords: [
     "psicóloga Méier",
     "psicóloga no Méier",
@@ -177,7 +177,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     locale: "pt_BR",
     siteName: "Priscila Oliveira Psicóloga",
-    title: "Priscila Oliveira | Psicóloga no Méier e Online",
+    title: "Psicóloga no Méier e Online | Priscila Oliveira CRP 05/84054",
     description:
       "Psicoterapia com Terapia Cognitivo-Comportamental (TCC), atendimento presencial no Méier, Rio de Janeiro, e online.",
     images: [
@@ -191,7 +191,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Priscila Oliveira | Psicóloga no Méier e Online",
+    title: "Psicóloga no Méier e Online | Priscila Oliveira CRP 05/84054",
     description:
       "Psicoterapia com TCC para ansiedade, autoestima, relacionamentos e depressão. Atendimento no Méier e online.",
     images: [`${siteUrl}/og-priscila.png`],
