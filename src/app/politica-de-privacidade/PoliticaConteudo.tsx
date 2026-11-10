@@ -115,6 +115,13 @@ export function PoliticaConteudo({ lista }: { lista: PoliticaLista | null }) {
                             desses dados pelo Google segue a política de privacidade dele, em{" "}
                             <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-dourado hover:text-dourado-dark underline">policies.google.com/privacy</a>.
                         </p>
+                        <p className="text-petroleo/80 leading-relaxed mt-3">
+                            <strong>Medição de visitas (Vercel Web Analytics):</strong> este site usa a
+                            ferramenta de análise da Vercel para contar quantas pessoas visitam cada
+                            página e de que site elas vieram, por exemplo o Google. A ferramenta não
+                            usa cookies e não guarda informações pessoais que identifiquem o visitante.
+                            O conteúdo das conversas pelo WhatsApp não é coletado pelo site.
+                        </p>
                     </section>
 
 
@@ -197,7 +204,7 @@ export function PoliticaConteudo({ lista }: { lista: PoliticaLista | null }) {
 
                     <section className="border-t border-bege-dark/20 pt-8 mt-12">
                         <p className="text-petroleo/60 text-sm">
-                            Última atualização: Outubro de 2026
+                            Última atualização: Novembro de 2026
                         </p>
                         <p className="text-petroleo/60 text-sm mt-1">
                             Dúvidas? Entre em contato: <a href={`mailto:${email}`} className="text-dourado hover:text-dourado-dark underline">{email}</a>

@@ -1,4 +1,5 @@
 import type { Servico } from "@/components/PaginaServico";
+import { avisoDeCrise } from "@/lib/fatos";
 
 // Páginas por área (GADS-L3-Q2, 13/10/2026). Só fatos de marketing/negocio.md e decisoes-respondidas.md:
 // TCC, sessão de 50 minutos, Méier, online para todo o Brasil, criança e adolescente (D7 = A), particular com recibo.
@@ -24,6 +25,46 @@ export const psicologaInfantilMeier: Servico = {
     comoFunciona:
         "A TCC é uma abordagem prática e estruturada. Nas sessões, a criança ou o adolescente tem espaço para falar do que está sentindo, e nós vamos entender juntos quais pensamentos e comportamentos estão gerando sofrimento, com ferramentas para o dia a dia.",
     online: true,
+    blocos: [
+        {
+            "titulo": "Sinais que pedem atenção",
+            "paragrafos": [
+                "Em crianças, costumam chamar atenção:"
+            ],
+            "lista": [
+                {
+                    "texto": "mudança no comportamento ou irritação frequente;"
+                },
+                {
+                    "texto": "medo ou preocupação além do esperado para a idade;"
+                },
+                {
+                    "texto": "queda no rendimento na escola;"
+                },
+                {
+                    "texto": "dificuldade para dormir;"
+                },
+                {
+                    "texto": "isolamento dos colegas e da família."
+                }
+            ],
+            "depois": [
+                "Em adolescentes, é comum aparecerem o isolamento, mudanças fortes de humor e perda de interesse pelo que gostavam. Essa lista não é diagnóstico: só uma conversa individual mostra o que está acontecendo."
+            ]
+        },
+        {
+            "titulo": "Presencial ou online",
+            "paragrafos": [
+                "Crianças e adolescentes são atendidos no consultório do Méier ou online, para todo o Brasil. Cada sessão tem 50 minutos."
+            ]
+        },
+        {
+            "titulo": "Para os responsáveis",
+            "paragrafos": [
+                "O primeiro passo é uma conversa de 10 minutos por chamada, marcada pelo WhatsApp, para os responsáveis tirarem dúvidas e combinarem o primeiro horário."
+            ]
+        }
+    ],
 };
 
 export const tccMeier: Servico = {
@@ -46,6 +87,51 @@ export const tccMeier: Servico = {
     comoFunciona:
         "A TCC é uma abordagem focada em entender como nossos pensamentos e comportamentos impactam nossas emoções. Nas sessões, nós vamos identificar juntos os pensamentos e hábitos que estão gerando sofrimento e trabalhar formas novas de lidar com eles.",
     online: true,
+    blocos: [
+        {
+            "titulo": "Em que situações as pessoas procuram a TCC",
+            "paragrafos": [
+                "A TCC é a abordagem de todos os atendimentos. Cada tema tem uma página própria:"
+            ],
+            "lista": [
+                {
+                    "texto": "Terapia para ansiedade",
+                    "href": "/terapia-para-ansiedade"
+                },
+                {
+                    "texto": "Terapia para depressão",
+                    "href": "/terapia-para-depressao"
+                },
+                {
+                    "texto": "Terapia de casal no Méier, para conflitos de relacionamento",
+                    "href": "/terapia-de-casal-meier"
+                },
+                {
+                    "texto": "Psicóloga infantil no Méier, para crianças e adolescentes",
+                    "href": "/psicologa-infantil-meier"
+                },
+                {
+                    "texto": "Autoestima e autoconhecimento, que também fazem parte do atendimento"
+                }
+            ]
+        },
+        {
+            "titulo": "Como a TCC costuma ser organizada",
+            "paragrafos": [
+                "A TCC costuma olhar para o que está acontecendo agora e para os pensamentos e comportamentos que mantêm o sofrimento. Paciente e psicóloga combinam juntas no que trabalhar."
+            ]
+        },
+        {
+            "titulo": "Presencial no Méier, online no Brasil",
+            "paragrafos": [
+                "O atendimento presencial é na Rua Dias da Cruz, 185, sala 207, no Méier. O online é para todo o Brasil. A terapia de casal é só presencial."
+            ],
+            "leiaTambem": {
+                "texto": "Leia também: O que é a Terapia Cognitivo-Comportamental (TCC)",
+                "href": "/blog/o-que-e-a-tcc"
+            }
+        }
+    ],
 };
 
 export const terapiaAnsiedade: Servico = {
@@ -68,6 +154,51 @@ export const terapiaAnsiedade: Servico = {
     comoFunciona:
         "A TCC é uma abordagem prática e estruturada. Nas sessões, nós vamos identificar juntos o que dispara a ansiedade e os pensamentos que a alimentam, e trabalhar estratégias para lidar com ela no dia a dia.",
     online: true,
+    blocos: [
+        {
+            "titulo": "Sinais que as pessoas mais descrevem",
+            "paragrafos": [
+                "A ansiedade é uma emoção comum, e todo mundo sente em algum momento. Ela passa a merecer atenção quando começa a atrapalhar o trabalho, os estudos, o sono ou as relações. Entre os sinais mais descritos:"
+            ],
+            "lista": [
+                {
+                    "texto": "preocupação difícil de controlar;"
+                },
+                {
+                    "texto": "inquietação ou tensão no corpo;"
+                },
+                {
+                    "texto": "dificuldade de se concentrar;"
+                },
+                {
+                    "texto": "sono ruim;"
+                },
+                {
+                    "texto": "irritabilidade;"
+                },
+                {
+                    "texto": "evitar situações por medo de errar ou de passar mal."
+                }
+            ]
+        },
+        {
+            "titulo": "O que a terapia faz e o que ela não faz",
+            "paragrafos": [
+                "A terapia é um acompanhamento por meio da conversa. Ela não substitui a avaliação médica: se os sintomas no corpo forem fortes ou houver suspeita de outro problema de saúde, vale também consultar um médico. A psicóloga não receita medicamentos."
+            ],
+            "aviso": avisoDeCrise
+        },
+        {
+            "titulo": "Como começar",
+            "paragrafos": [
+                "O primeiro passo é uma conversa de 10 minutos por chamada, marcada pelo WhatsApp. Nela eu explico como funciona o acompanhamento e combinamos o primeiro horário."
+            ],
+            "leiaTambem": {
+                "texto": "Leia também: Quando procurar terapia para ansiedade",
+                "href": "/blog/quando-procurar-terapia-para-ansiedade"
+            }
+        }
+    ],
 };
 
 export const terapiaDepressao: Servico = {
@@ -90,6 +221,47 @@ export const terapiaDepressao: Servico = {
     comoFunciona:
         "A TCC é uma abordagem prática e estruturada. Nas sessões, nós vamos entender juntos os pensamentos e hábitos que mantêm o desânimo e planejar juntos, aos poucos e no seu ritmo, pequenos passos no dia a dia.",
     online: true,
+    blocos: [
+        {
+            "titulo": "Quando a tristeza merece atenção",
+            "paragrafos": [
+                "Todo mundo fica triste às vezes. O que chama atenção é quando a tristeza dura semanas e vem com outros sinais, como:"
+            ],
+            "lista": [
+                {
+                    "texto": "perda de interesse pelo que antes dava prazer;"
+                },
+                {
+                    "texto": "cansaço e falta de energia;"
+                },
+                {
+                    "texto": "mudança no sono ou no apetite;"
+                },
+                {
+                    "texto": "dificuldade de se concentrar;"
+                },
+                {
+                    "texto": "sentimento de culpa ou de não valer nada."
+                }
+            ]
+        },
+        {
+            "titulo": "Terapia e avaliação médica",
+            "paragrafos": [
+                "Diante da suspeita de depressão, vale também uma avaliação médica. A psicóloga trabalha por meio da conversa; remédios, quando indicados, são prescritos por médico."
+            ]
+        },
+        {
+            "titulo": "Se for urgente",
+            "aviso": avisoDeCrise
+        },
+        {
+            "titulo": "Como começar",
+            "paragrafos": [
+                "O primeiro passo é uma conversa de 10 minutos por chamada, marcada pelo WhatsApp, para tirar dúvidas e combinar o primeiro horário."
+            ]
+        }
+    ],
 };
 
 export const paginasServico = [psicologaInfantilMeier, tccMeier, terapiaAnsiedade, terapiaDepressao];

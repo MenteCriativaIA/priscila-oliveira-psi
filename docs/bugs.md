@@ -8,3 +8,6 @@ Como achei: a checagem de texto passou (`conferir-seo`), mas a medição da altu
 
 ## 09/11/2026 — `next build` falhou uma vez com erro de fonte do Google (`module-not-found` em `cormorant_garamond`)
 Causa: o download das fontes do Google falhou na rede. A segunda execução passou sem mudar nada. Se repetir, rode o build de novo antes de investigar o código.
+
+## 10/11/2026 — `next build` falhou de novo na primeira execução (erro de resolução de módulo, provavelmente a fonte do Google)
+A segunda execução passou sem mudar nada. É a segunda vez; se aparecer uma terceira, vale baixar as fontes para dentro do projeto em vez de depender da rede no build.

@@ -10,6 +10,18 @@ import { jsonLd, servico } from "@/lib/dados-estruturados";
 
 const siteUrl = "https://www.priolivepsi.com.br";
 
+/** Bloco de texto próprio da página (sinais, avisos, como começar). Entra entre "Como funciona" e "Onde e como". */
+export interface BlocoServico {
+    titulo: string;
+    paragrafos?: string[];
+    lista?: { texto: string; href?: string }[];
+    /** Parágrafos depois da lista. */
+    depois?: string[];
+    /** Aviso em caixa (ex.: crise, CVV 188). */
+    aviso?: string;
+    leiaTambem?: { texto: string; href: string };
+}
+
 export interface Servico {
     caminho: string;
     titulo: string;
@@ -22,6 +34,7 @@ export interface Servico {
     comoFunciona: string;
     // Online para todo o Brasil, inclusive crianças e adolescentes (13/10/2026); só casal fica presencial.
     online: boolean;
+    blocos?: BlocoServico[];
 }
 
 export function metadadosServico(s: Servico): Metadata {
@@ -128,8 +141,59 @@ export function PaginaServico({ s }: { s: Servico }) {
                 </div>
             </section>
 
+            {/* Blocos próprios da página */}
+            {s.blocos && (
+                <section id="mais-sobre-o-tema" className="bg-bege-light py-20 px-6">
+                    <div className="mx-auto max-w-4xl space-y-12">
+                        {s.blocos.map((b) => (
+                            <div key={b.titulo}>
+                                <h2 className="font-serif text-2xl font-bold text-petroleo sm:text-3xl">{b.titulo}</h2>
+                                <div className="mt-3 h-1 w-12 rounded-full bg-dourado" />
+                                {b.paragrafos?.map((t) => (
+                                    <p key={t} className="mt-5 text-lg text-petroleo/80 leading-relaxed">
+                                        {t}
+                                    </p>
+                                ))}
+                                {b.lista && (
+                                    <ul className="mt-4 list-disc space-y-2 pl-6 text-lg text-petroleo/80">
+                                        {b.lista.map((i) => (
+                                            <li key={i.texto}>
+                                                {i.href ? (
+                                                    <Link className="underline underline-offset-2" href={i.href}>
+                                                        {i.texto}
+                                                    </Link>
+                                                ) : (
+                                                    i.texto
+                                                )}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                                {b.depois?.map((t) => (
+                                    <p key={t} className="mt-5 text-lg text-petroleo/80 leading-relaxed">
+                                        {t}
+                                    </p>
+                                ))}
+                                {b.aviso && (
+                                    <p className="mt-5 rounded-3xl border border-bege-dark/20 bg-white/80 p-6 text-lg text-petroleo/80 leading-relaxed">
+                                        {b.aviso}
+                                    </p>
+                                )}
+                                {b.leiaTambem && (
+                                    <p className="mt-5 text-lg text-petroleo/80">
+                                        <Link className="underline underline-offset-2" href={b.leiaTambem.href}>
+                                            {b.leiaTambem.texto}
+                                        </Link>
+                                    </p>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            )}
+
             {/* Onde */}
-            <section id="onde-fica" className="bg-bege-light py-20 px-6">
+            <section id="onde-fica" className={`${s.blocos ? "" : "bg-bege-light "}py-20 px-6`}>
                 <div className="mx-auto max-w-4xl">
                     <h2 className="font-serif text-3xl font-bold text-petroleo sm:text-4xl">
                         {s.online ? "Onde e como" : "Onde fica o consultório"}
