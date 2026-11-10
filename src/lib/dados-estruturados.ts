@@ -15,6 +15,11 @@ const idSite = `${siteUrl}/#site`;
 
 const redes = [siteContent.instagram, siteContent.linkedin].filter(Boolean);
 
+// Perfil da Empresa no Google Maps, aberto em 10/11/2026 ("Psicóloga no Méier - Priscila Oliveira", 5,0 com 3 avaliações).
+// O link usa o identificador do local (cid); coordenadas lidas da própria página do Maps.
+export const linkDoMaps = "https://maps.google.com/?cid=1820871504746715316";
+const coordenadas = { latitude: -22.9032516, longitude: -43.2820264 };
+
 export function pessoa() {
     return {
         "@type": "Person",
@@ -83,6 +88,8 @@ export function consultorio() {
             opens: abre,
             closes: fecha,
         })),
+        geo: { "@type": "GeoCoordinates", ...coordenadas },
+        hasMap: linkDoMaps,
         paymentAccepted: "PIX, cartão, transferência",
         currenciesAccepted: "BRL",
         priceRange: "Sob consulta",
@@ -95,7 +102,7 @@ export function consultorio() {
         ].map((nome) => ({ "@type": "MedicalTherapy", name: nome })),
         founder: { "@id": idPriscila },
         employee: { "@id": idPriscila },
-        sameAs: redes,
+        sameAs: [...redes, linkDoMaps],
     };
 }
 
