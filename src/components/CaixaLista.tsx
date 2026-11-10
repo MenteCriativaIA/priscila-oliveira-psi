@@ -76,14 +76,14 @@ export function CaixaLista({ pagina }: { pagina: string }) {
 
             <label className="flex items-start gap-3 text-sm text-petroleo/85">
                 <input type="checkbox" required checked={aceiteEmail} onChange={(e) => setAceiteEmail(e.target.checked)} className="mt-1 h-4 w-4 shrink-0 accent-[var(--site-primary)]" />
-                <span>Aceito receber por e-mail os textos novos do blog, como explica a <Link href="/politica-de-privacidade#lista" className="text-dourado-dark underline">Política de Privacidade</Link>.</span>
+                <span>Aceito receber por e-mail os textos novos do blog, como explica a <Link href="/politica-de-privacidade#lista" className="text-petroleo font-medium underline">Política de Privacidade</Link>.</span>
             </label>
             <label className={`flex items-start gap-3 text-sm ${temWhatsapp ? "text-petroleo/85" : "text-petroleo/50"}`}>
                 <input type="checkbox" required={temWhatsapp} disabled={!temWhatsapp} checked={temWhatsapp && aceiteWhatsapp} onChange={(e) => setAceiteWhatsapp(e.target.checked)} className="mt-1 h-4 w-4 shrink-0 accent-[var(--site-primary)]" />
                 <span>Aceito receber os textos novos também pelo WhatsApp (só vale se você preencher o número acima).</span>
             </label>
 
-            <p className="text-xs text-petroleo/70">Não escreva aqui nada sobre a sua saúde. Para conversar sobre atendimento, use o WhatsApp.</p>
+            <p className="text-xs text-petroleo/80">Não escreva aqui nada sobre a sua saúde. Para conversar sobre atendimento, use o WhatsApp.</p>
 
             <div className="flex flex-wrap items-center gap-4">
                 <button type="submit" disabled={estado === "enviando"} className="rounded-full bg-petroleo px-6 py-3 font-medium text-bege-light transition-colors hover:bg-petroleo-dark disabled:opacity-60">
