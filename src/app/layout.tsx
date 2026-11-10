@@ -16,6 +16,7 @@ import "./globals.css";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { QuickExitButton } from "@/components/QuickExitButton";
 import { GoogleAdsTag } from "@/components/GoogleAdsTag";
+import { Analytics } from "@vercel/analytics/next";
 import siteContent from "@/data/site-content.json";
 
 const inter = Inter({
@@ -231,6 +232,7 @@ export default function RootLayout({
         <FloatingWhatsApp />
         <QuickExitButton />
         <GoogleAdsTag />
+        <Analytics />
       </body>
     </html>
   );
